@@ -10,33 +10,33 @@ class Book Me Memories_Welcome {
 	 */
 	public function __construct() {
 		/* create dashbord page */
-		add_action( 'admin_menu', array( $this, 'illdy_welcome_register_menu' ) );
+		add_action( 'admin_menu', array( $this, 'book-me-memories_welcome_register_menu' ) );
 
 		/* activation notice */
-		add_action( 'load-themes.php', array( $this, 'illdy_activation_admin_notice' ) );
+		add_action( 'load-themes.php', array( $this, 'book-me-memories_activation_admin_notice' ) );
 
 		/* enqueue script and style for welcome screen */
-		add_action( 'admin_enqueue_scripts', array( $this, 'illdy_welcome_style_and_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'book-me-memories_welcome_style_and_scripts' ) );
 
 		/* enqueue script for customizer */
-		add_action( 'customize_controls_enqueue_scripts', array( $this, 'illdy_welcome_scripts_for_customizer' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'book-me-memories_welcome_scripts_for_customizer' ) );
 
 		/* ajax callback for dismissable required actions */
-		add_action( 'wp_ajax_illdy_dismiss_required_action', array(
+		add_action( 'wp_ajax_book-me-memories_dismiss_required_action', array(
 			$this,
-			'illdy_dismiss_required_action_callback'
+			'book-me-memories_dismiss_required_action_callback'
 		) );
-		add_action( 'wp_ajax_illdy_dismiss_recommended_plugins', array(
+		add_action( 'wp_ajax_book-me-memories_dismiss_recommended_plugins', array(
 			$this,
-			'illdy_dismiss_recommended_plugins_callback'
+			'book-me-memories_dismiss_recommended_plugins_callback'
 		) );
 
-		add_action( 'admin_init', array( $this, 'illdy_activate_plugin' ) );
-		add_action( 'admin_init', array( $this, 'illdy_deactivate_plugin' ) );
-		add_action( 'admin_init', array( $this, 'illdy_set_pages' ) );
+		add_action( 'admin_init', array( $this, 'book-me-memories_activate_plugin' ) );
+		add_action( 'admin_init', array( $this, 'book-me-memories_deactivate_plugin' ) );
+		add_action( 'admin_init', array( $this, 'book-me-memories_set_pages' ) );
 	}
 
-	public function illdy_set_pages() {
+	public function book-me-memories_set_pages() {
 		if ( ! empty( $_GET ) ) {
 			/**
 			 * Check action
@@ -51,7 +51,7 @@ class Book Me Memories_Welcome {
 				$blog = get_page_by_title( 'Blog' );
 				update_option( 'page_for_posts', $blog->ID );
 
-				wp_redirect( self_admin_url( 'themes.php?page=illdy-welcome&tab=' . $active_tab ) );
+				wp_redirect( self_admin_url( 'themes.php?page=book-me-memories-welcome&tab=' . $active_tab ) );
 			}
 		}
 	}
@@ -59,27 +59,27 @@ class Book Me Memories_Welcome {
 	
 
 
-	public function illdy_activate_plugin() {
+	public function book-me-memories_activate_plugin() {
 		if ( ! empty( $_GET ) ) {
 			/**
 			 * Check action
 			 */
 			if ( ! empty( $_GET['action'] ) && ! empty( $_GET['plugin'] ) && $_GET['action'] === 'activate_plugin' ) {
 				$active_tab = $_GET['tab'];
-				$url        = self_admin_url( 'themes.php?page=illdy-welcome&tab=' . $active_tab );
+				$url        = self_admin_url( 'themes.php?page=book-me-memories-welcome&tab=' . $active_tab );
 				activate_plugin( $_GET['plugin'], $url );
 			}
 		}
 	}
 
-	public function illdy_deactivate_plugin() {
+	public function book-me-memories_deactivate_plugin() {
 		if ( ! empty( $_GET ) ) {
 			/**
 			 * Check action
 			 */
 			if ( ! empty( $_GET['action'] ) && ! empty( $_GET['plugin'] ) && $_GET['action'] === 'deactivate_plugin' ) {
 				$active_tab = $_GET['tab'];
-				$url        = self_admin_url( 'themes.php?page=illdy-welcome&tab=' . $active_tab );
+				$url        = self_admin_url( 'themes.php?page=book-me-memories-welcome&tab=' . $active_tab );
 				$current    = get_option( 'active_plugins', array() );
 				$search     = array_search( $_GET['plugin'], $current );
 				if ( array_key_exists( $search, $current ) ) {
@@ -96,13 +96,13 @@ class Book Me Memories_Welcome {
 	 * @see   add_theme_page()
 	 * @since 1.8.2.4
 	 */
-	public function illdy_welcome_register_menu() {
+	public function book-me-memories_welcome_register_menu() {
 		$action_count = $this->count_actions();
-		$title        = $action_count > 0 ? 'About Book Me Memories <span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : 'About Book Me Memories';
+		$title        = $action_count > 0 ? 'About "Book Me Memories" <span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : 'About Book Me Memories';
 
-		add_theme_page( 'About Book Me Memories', $title, 'edit_theme_options', 'illdy-welcome', array(
+		add_theme_page( 'About Book Me Memories', $title, 'edit_theme_options', 'book-me-memories-welcome', array(
 			$this,
-			'illdy_welcome_screen'
+			'book-me-memories_welcome_screen'
 		) );
 	}
 
@@ -111,11 +111,11 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since 1.8.2.4
 	 */
-	public function illdy_activation_admin_notice() {
+	public function book-me-memories_activation_admin_notice() {
 		global $pagenow;
 
 		if ( is_admin() && ( 'themes.php' == $pagenow ) && isset( $_GET['activated'] ) ) {
-			add_action( 'admin_notices', array( $this, 'illdy_welcome_admin_notice' ), 99 );
+			add_action( 'admin_notices', array( $this, 'book-me-memories_welcome_admin_notice' ), 99 );
 		}
 	}
 
@@ -124,12 +124,12 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since 1.8.2.4
 	 */
-	public function illdy_welcome_admin_notice() {
+	public function book-me-memories_welcome_admin_notice() {
 		?>
 		<div class="updated notice is-dismissible">
-			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing Book Me Memories! To fully take advantage of the best our theme can offer please make sure you visit our %swelcome page%s.', 'illdy' ), '<a href="' . esc_url( admin_url( 'themes.php?page=illdy-welcome' ) ) . '">', '</a>' ); ?></p>
-			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=illdy-welcome' ) ); ?>" class="button"
-			      style="text-decoration: none;"><?php _e( 'Get started with Book Me Memories', 'illdy' ); ?></a></p>
+			<p><?php echo sprintf( esc_html__( 'Welcome! Thank you for choosing "Book Me Memories"! To fully take advantage of the best our theme can offer please make sure you visit our %swelcome page%s.', 'book-me-memories' ), '<a href="' . esc_url( admin_url( 'themes.php?page=book-me-memories-welcome' ) ) . '">', '</a>' ); ?></p>
+			<p><a href="<?php echo esc_url( admin_url( 'themes.php?page=book-me-memories-welcome' ) ); ?>" class="button"
+			      style="text-decoration: none;"><?php _e( 'Get started with Book Me Memories', 'book-me-memories' ); ?></a></p>
 		</div>
 		<?php
 	}
@@ -139,22 +139,22 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since  1.8.2.4
 	 */
-	public function illdy_welcome_style_and_scripts( $hook_suffix ) {
+	public function book-me-memories_welcome_style_and_scripts( $hook_suffix ) {
 
-		wp_enqueue_style( 'illdy-welcome-screen-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome.css' );
+		wp_enqueue_style( 'book-me-memories-welcome-screen-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome.css' );
 		
 		$screen = get_current_screen();
-		if ( $screen->base != 'appearance_page_illdy-welcome' ) {
+		if ( $screen->base != 'appearance_page_book-me-memories-welcome' ) {
 			return;
 		}
 		
-		wp_enqueue_script( 'illdy-welcome-screen-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome.js', array( 'jquery' ) );
+		wp_enqueue_script( 'book-me-memories-welcome-screen-js', get_template_directory_uri() . '/inc/admin/welcome-screen/js/welcome.js', array( 'jquery' ) );
 
-		wp_localize_script( 'illdy-welcome-screen-js', 'illdyWelcomeScreenObject', array(
+		wp_localize_script( 'book-me-memories-welcome-screen-js', 'book-me-memoriesWelcomeScreenObject', array(
 			'nr_actions_required'      => $this->count_actions(),
 			'ajaxurl'                  => admin_url( 'admin-ajax.php' ),
 			'template_directory'       => get_template_directory_uri(),
-			'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.', 'illdy' )
+			'no_required_actions_text' => __( 'Hooray! There are no required actions for you right now.', 'book-me-memories' )
 		) );
 
 	}
@@ -164,9 +164,9 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since  1.8.2.4
 	 */
-	public function illdy_welcome_scripts_for_customizer() {
+	public function book-me-memories_welcome_scripts_for_customizer() {
 
-		wp_enqueue_style( 'illdy-welcome-screen-customizer-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome_customizer.css' );
+		wp_enqueue_style( 'book-me-memories-welcome-screen-customizer-css', get_template_directory_uri() . '/inc/admin/welcome-screen/css/welcome_customizer.css' );
 		
 	}
 
@@ -175,9 +175,9 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since 1.8.2.4
 	 */
-	public function illdy_dismiss_required_action_callback() {
+	public function book-me-memories_dismiss_required_action_callback() {
 
-		global $illdy_required_actions;
+		global $book-me-memories_required_actions;
 
 		$action_id = ( isset( $_GET['id'] ) ) ? $_GET['id'] : 0;
 
@@ -186,39 +186,39 @@ class Book Me Memories_Welcome {
 		if ( ! empty( $action_id ) ):
 
 			/* if the option exists, update the record for the specified id */
-			if ( get_option( 'illdy_show_required_actions' ) ):
+			if ( get_option( 'book-me-memories_show_required_actions' ) ):
 
-				$illdy_show_required_actions = get_option( 'illdy_show_required_actions' );
+				$book-me-memories_show_required_actions = get_option( 'book-me-memories_show_required_actions' );
 
 				switch($_GET['todo']){
 					case 'add';
-						$illdy_show_required_actions[ $action_id ] = true;
+						$book-me-memories_show_required_actions[ $action_id ] = true;
 						break;
 					case 'dismiss';
-						$illdy_show_required_actions[ $action_id ] = false;
+						$book-me-memories_show_required_actions[ $action_id ] = false;
 						break;
 				}
 
-				update_option( 'illdy_show_required_actions', $illdy_show_required_actions );
+				update_option( 'book-me-memories_show_required_actions', $book-me-memories_show_required_actions );
 
 			/* create the new option,with false for the specified id */
 			else:
 
-				$illdy_show_required_actions_new = array();
+				$book-me-memories_show_required_actions_new = array();
 
-				if ( ! empty( $illdy_required_actions ) ):
+				if ( ! empty( $book-me-memories_required_actions ) ):
 
-					foreach ( $illdy_required_actions as $illdy_required_action ):
+					foreach ( $book-me-memories_required_actions as $book-me-memories_required_action ):
 
-						if ( $illdy_required_action['id'] == $action_id ):
-							$illdy_show_required_actions_new[ $illdy_required_action['id'] ] = false;
+						if ( $book-me-memories_required_action['id'] == $action_id ):
+							$book-me-memories_show_required_actions_new[ $book-me-memories_required_action['id'] ] = false;
 						else:
-							$illdy_show_required_actions_new[ $illdy_required_action['id'] ] = true;
+							$book-me-memories_show_required_actions_new[ $book-me-memories_required_action['id'] ] = true;
 						endif;
 
 					endforeach;
 
-					update_option( 'illdy_show_required_actions', $illdy_show_required_actions_new );
+					update_option( 'book-me-memories_show_required_actions', $book-me-memories_show_required_actions_new );
 
 				endif;
 
@@ -229,22 +229,22 @@ class Book Me Memories_Welcome {
 		die(); // this is required to return a proper result
 	}
 
-	public function illdy_dismiss_recommended_plugins_callback() {
+	public function book-me-memories_dismiss_recommended_plugins_callback() {
 		$action_id = ( isset( $_GET['id'] ) ) ? $_GET['id'] : 0;
 		echo $action_id; /* this is needed and it's the id of the dismissable required action */
 		if ( ! empty( $action_id ) ):
 			/* if the option exists, update the record for the specified id */
-			$illdy_show_recommended_plugins = get_option( 'illdy_show_recommended_plugins' );
+			$book-me-memories_show_recommended_plugins = get_option( 'book-me-memories_show_recommended_plugins' );
 				
 				switch ( $_GET['todo'] ) {
 					case 'add';
-						$illdy_show_recommended_plugins[ $action_id ] = false;
+						$book-me-memories_show_recommended_plugins[ $action_id ] = false;
 						break;
 					case 'dismiss';
-						$illdy_show_recommended_plugins[ $action_id ] = true;
+						$book-me-memories_show_recommended_plugins[ $action_id ] = true;
 						break;
 				}
-				update_option( 'illdy_show_recommended_plugins', $illdy_show_recommended_plugins );
+				update_option( 'book-me-memories_show_recommended_plugins', $book-me-memories_show_recommended_plugins );
 			/* create the new option,with false for the specified id */
 		endif;
 		die(); // this is required to return a proper result
@@ -254,15 +254,15 @@ class Book Me Memories_Welcome {
 	 *
 	 */
 	public function count_actions() {
-		global $illdy_required_actions;
+		global $book-me-memories_required_actions;
 
-		$illdy_show_required_actions = get_option( 'illdy_show_required_actions' );
-		if ( ! $illdy_show_required_actions ) {
-			$illdy_show_required_actions = array();
+		$book-me-memories_show_required_actions = get_option( 'book-me-memories_show_required_actions' );
+		if ( ! $book-me-memories_show_required_actions ) {
+			$book-me-memories_show_required_actions = array();
 		}
 
 		$i = 0;
-		foreach ( $illdy_required_actions as $action ) {
+		foreach ( $book-me-memories_required_actions as $action ) {
 			$true      = false;
 			$dismissed = false;
 
@@ -270,7 +270,7 @@ class Book Me Memories_Welcome {
 				$true = true;
 			}
 
-			if ( ! empty( $illdy_show_required_actions ) && isset( $illdy_show_required_actions[ $action['id'] ] ) && ! $illdy_show_required_actions[ $action['id'] ] ) {
+			if ( ! empty( $book-me-memories_show_required_actions ) && isset( $book-me-memories_show_required_actions[ $action['id'] ] ) && ! $book-me-memories_show_required_actions[ $action['id'] ] ) {
 				$true = false;
 			}
 
@@ -286,7 +286,7 @@ class Book Me Memories_Welcome {
 	public function call_plugin_api( $slug ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 
-		if ( false === ( $call_api = get_transient( 'illdy_plugin_information_transient_' . $slug ) ) ) {
+		if ( false === ( $call_api = get_transient( 'book-me-memories_plugin_information_transient_' . $slug ) ) ) {
 			$call_api = plugins_api( 'plugin_information', array(
 				'slug'   => $slug,
 				'fields' => array(
@@ -307,7 +307,7 @@ class Book Me Memories_Welcome {
 					'icons'             => true
 				)
 			) );
-			set_transient( 'illdy_plugin_information_transient_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
+			set_transient( 'book-me-memories_plugin_information_transient_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
 		}
 
 		return $call_api;
@@ -395,12 +395,12 @@ class Book Me Memories_Welcome {
 	 *
 	 * @since 1.8.2.4
 	 */
-	public function illdy_welcome_screen() {
+	public function book-me-memories_welcome_screen() {
 		require_once( ABSPATH . 'wp-load.php' );
 		require_once( ABSPATH . 'wp-admin/admin.php' );
 		require_once( ABSPATH . 'wp-admin/admin-header.php' );
 
-		$illdy      = wp_get_theme();
+		$book-me-memories      = wp_get_theme();
 		$active_tab   = isset( $_GET['tab'] ) ? $_GET['tab'] : 'getting_started';
 		$action_count = $this->count_actions();
 
@@ -408,26 +408,26 @@ class Book Me Memories_Welcome {
 
 		<div class="wrap about-wrap epsilon-wrap">
 
-			<h1><?php echo __( 'Welcome to Book Me Memories! - Version ', 'illdy' ) . $illdy['Version']; ?></h1>
+			<h1><?php echo __( 'Welcome to "Book Me Memories"! - Version ', 'book-me-memories' ) . $book-me-memories['Version']; ?></h1>
 
 			<div class="about-text">
-				<?php esc_html_e( 'Our most popular free one page WordPress theme, Book Me Memories!','illdy'); ?><br>
-				<?php esc_html_e( 'We want to make sure you have the best experience using Book Me Memories and that is why we gathered here all the necessary information for you. We hope you will enjoy using Book Me Memories, as much as we enjoy creating great products.', 'illdy' ); ?>
+				<?php esc_html_e( 'Our most popular free one page WordPress theme, "Book Me Memories"!','book-me-memories'); ?><br>
+				<?php esc_html_e( 'We want to make sure you have the best experience using "Book Me Memories" and that is why we gathered here all the necessary information for you. We hope you will enjoy using "Book Me Memories", as much as we enjoy creating great products.', 'book-me-memories' ); ?>
 			</div>
 
 			<div class="wp-badge epsilon-welcome-logo"></div>
 
 
 			<h2 class="nav-tab-wrapper wp-clearfix">
-				<a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=getting_started' ); ?>"
-				   class="nav-tab <?php echo $active_tab == 'getting_started' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'illdy' ); ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=recommended_actions' ); ?>"
-				   class="nav-tab <?php echo $active_tab == 'recommended_actions' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'illdy' ); ?>
+				<a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=getting_started' ); ?>"
+				   class="nav-tab <?php echo $active_tab == 'getting_started' ? 'nav-tab-active' : ''; ?>"><?php echo esc_html__( 'Getting Started', 'book-me-memories' ); ?></a>
+				<a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=recommended_actions' ); ?>"
+				   class="nav-tab <?php echo $active_tab == 'recommended_actions' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Actions', 'book-me-memories' ); ?>
 					<?php echo $action_count > 0 ? '<span class="badge-action-count">' . esc_html( $action_count ) . '</span>' : '' ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=recommended_plugins' ); ?>"
-				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'illdy' ); ?></a>
-				<a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=support' ); ?>"
-				   class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'illdy' ); ?></a>
+				<a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=recommended_plugins' ); ?>"
+				   class="nav-tab <?php echo $active_tab == 'recommended_plugins' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Recommended Plugins', 'book-me-memories' ); ?></a>
+				<a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=support' ); ?>"
+				   class="nav-tab <?php echo $active_tab == 'support' ? 'nav-tab-active' : ''; ?> "><?php echo esc_html__( 'Support', 'book-me-memories' ); ?></a>
 			</h2>
 
 			<?php

@@ -1,9 +1,9 @@
 <?php
 // Set Panel ID
-$panel_id = 'illdy_panel_general';
+$panel_id = 'book-me-memories_panel_general';
 
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 
 // Change panel for Static Front Page
@@ -12,8 +12,8 @@ $site_title->panel = $panel_id;
 
 // Change Logo section
 $site_logo              = $wp_customize->get_control( 'custom_logo' );
-$site_logo->description = __( 'The site logo is used as a graphical representation of your company name. Recommended size: 105 (width) x 75 (height) pixels(px).', 'illdy' );
-$site_logo->label       = __( 'Site logo', 'illdy' );
+$site_logo->description = __( 'The site logo is used as a graphical representation of your company name. Recommended size: 105 (width) x 75 (height) pixels(px).', 'book-me-memories' );
+$site_logo->label       = __( 'Site logo', 'book-me-memories' );
 $site_logo->section     = $prefix . '_general_logo_section';
 $site_logo->priority    = 1;
 
@@ -34,8 +34,8 @@ $wp_customize->add_panel( $panel_id, array(
 	'priority'       => 1,
 	'capability'     => 'edit_theme_options',
 	'theme_supports' => '',
-	'title'          => __( 'General Options', 'illdy' ),
-	'description'    => __( 'You can change the site layout in this area as well as your contact details (the ones displayed in the header & footer) ', 'illdy' ),
+	'title'          => __( 'General Options', 'book-me-memories' ),
+	'description'    => __( 'You can change the site layout in this area as well as your contact details (the ones displayed in the header & footer) ', 'book-me-memories' ),
 ) );
 
 /***********************************************/
@@ -43,7 +43,7 @@ $wp_customize->add_panel( $panel_id, array(
 /***********************************************/
 
 $wp_customize->add_section( $prefix . '_preloader_section', array(
-	'title'    => __( 'Preloader', 'illdy' ),
+	'title'    => __( 'Preloader', 'book-me-memories' ),
 	'priority' => 1,
 	'panel'    => $panel_id,
 ) );
@@ -55,7 +55,7 @@ $wp_customize->add_setting( $prefix . '_preloader_enable', array(
 ) );
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_preloader_enable', array(
 	'type'     => 'mte-toggle',
-	'label'    => __( 'Enable the site preloader?', 'illdy' ),
+	'label'    => __( 'Enable the site preloader?', 'book-me-memories' ),
 	'section'  => $prefix . '_preloader_section',
 	'priority' => 1,
 ) ) );
@@ -66,8 +66,8 @@ $wp_customize->add_setting( $prefix . '_preloader_background_color', array(
 	'default'           => '#ffffff',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_preloader_background_color', array(
-	'label'       => __( 'Preloader background color', 'illdy' ),
-	'description' => __( 'Controls the background color for the container where the preloader is diplayed on', 'illdy' ),
+	'label'       => __( 'Preloader background color', 'book-me-memories' ),
+	'description' => __( 'Controls the background color for the container where the preloader is diplayed on', 'book-me-memories' ),
 	'section'     => $prefix . '_preloader_section',
 	'settings'    => $prefix . '_preloader_background_color',
 	'priority'    => 2,
@@ -79,8 +79,8 @@ $wp_customize->add_setting( $prefix . '_preloader_primary_color', array(
 	'default'           => '#f1d204',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_preloader_primary_color', array(
-	'label'       => __( 'Preloader primary color', 'illdy' ),
-	'description' => __( 'Controls the color of the loading bar & of the percentage.', 'illdy' ),
+	'label'       => __( 'Preloader primary color', 'book-me-memories' ),
+	'description' => __( 'Controls the color of the loading bar & of the percentage.', 'book-me-memories' ),
 	'section'     => $prefix . '_preloader_section',
 	'settings'    => $prefix . '_preloader_primary_color',
 	'priority'    => 3,
@@ -92,8 +92,8 @@ $wp_customize->add_setting( $prefix . '_preloader_secondly_color', array(
 	'default'           => '#ffffff',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_preloader_secondly_color', array(
-	'label'       => __( 'Preloader secondary color', 'illdy' ),
-	'description' => __( 'Controls the color outline of the preloader (the border)', 'illdy' ),
+	'label'       => __( 'Preloader secondary color', 'book-me-memories' ),
+	'description' => __( 'Controls the color outline of the preloader (the border)', 'book-me-memories' ),
 	'section'     => $prefix . '_preloader_section',
 	'settings'    => $prefix . '_preloader_secondly_color',
 	'priority'    => 4,
@@ -104,7 +104,7 @@ $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $pref
 /***********************************************/
 
 $wp_customize->add_section( $prefix . '_general_logo_section', array(
-	'title'    => __( 'Logo', 'illdy' ),
+	'title'    => __( 'Logo', 'book-me-memories' ),
 	'priority' => 2,
 	'panel'    => $panel_id,
 ) );
@@ -119,14 +119,14 @@ $wp_customize->selective_refresh->add_partial( 'custom_logo', array(
 
 /* Company text logo */
 $wp_customize->add_setting( $prefix . '_text_logo', array(
-	'sanitize_callback' => 'illdy_sanitize_html',
-	'default'           => __( 'Book Me Memories', 'illdy' ),
+	'sanitize_callback' => 'book-me-memories_sanitize_html',
+	'default'           => __( 'Book Me Memories', 'book-me-memories' ),
 	'transport'         => 'postMessage',
 ) );
 
 $wp_customize->add_control( $prefix . '_text_logo', array(
-	'label'       => __( 'Text logo (company name)', 'illdy' ),
-	'description' => __( 'This field is best used when you don\'t have an image logo or simply prefer using a text as your logo / company name.', 'illdy' ),
+	'label'       => __( 'Text logo (company name)', 'book-me-memories' ),
+	'description' => __( 'This field is best used when you don\'t have an image logo or simply prefer using a text as your logo / company name.', 'book-me-memories' ),
 	'section'     => $prefix . '_general_logo_section',
 	'priority'    => 2,
 ) );
@@ -140,22 +140,22 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_text_logo', array(
 /************** Footer Details  ***************/
 /***********************************************/
 $wp_customize->add_section( $prefix . '_general_footer_section', array(
-	'title'       => __( 'Copyright', 'illdy' ),
-	'description' => __( 'From this section, you\'ll be able to alter the footer settings. Manage your copyright message as well as the logo shown in the footer of the theme.', 'illdy' ),
+	'title'       => __( 'Copyright', 'book-me-memories' ),
+	'description' => __( 'From this section, you\'ll be able to alter the footer settings. Manage your copyright message as well as the logo shown in the footer of the theme.', 'book-me-memories' ),
 	'priority'    => 4,
 	'panel'       => $panel_id,
 ) );
 
 /* Footer Copyright */
 $wp_customize->add_setting( $prefix . '_footer_copyright', array(
-	'sanitize_callback' => 'illdy_sanitize_html',
-	'default'           => __( '&copy; Copyright 2016. All Rights Reserved.', 'illdy' ),
+	'sanitize_callback' => 'book-me-memories_sanitize_html',
+	'default'           => __( '&copy; Copyright 2016. All Rights Reserved.', 'book-me-memories' ),
 	'transport'         => 'postMessage',
 ) );
 
 $wp_customize->add_control( $prefix . '_footer_copyright', array(
-	'label'       => __( 'Footer Copyright', 'illdy' ),
-	'description' => __( 'Use this to display your company copyright message.', 'illdy' ),
+	'label'       => __( 'Footer Copyright', 'book-me-memories' ),
+	'description' => __( 'Use this to display your company copyright message.', 'book-me-memories' ),
 	'section'     => $prefix . '_general_footer_section',
 	'priority'    => 2,
 ) );

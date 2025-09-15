@@ -1,16 +1,16 @@
 <?php
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 /***********************************************/
 /******************* General *******************/
 /***********************************************/
 $wp_customize->add_section( $prefix . '_counter_general' ,
     array(
-        'priority'      => illdy_get_section_position($prefix . '_counter_general'),
-        'title'         => __( 'Counter Section', 'illdy' ),
-        'description'   => __( '*In order to get this section to show up on the front-page, make sure you have: 1) enabled static front-page & 2) have a widget placed in this sidebar. More specifically go to Widgets -> Front page - counter sidebar & place the [Book Me Memories] - Counter widget in here.', 'illdy' ),
-        'panel'         => 'illdy_frontpage_panel'
+        'priority'      => book-me-memories_get_section_position($prefix . '_counter_general'),
+        'title'         => __( 'Counter Section', 'book-me-memories' ),
+        'description'   => __( '*In order to get this section to show up on the front-page, make sure you have: 1) enabled static front-page & 2) have a widget placed in this sidebar. More specifically go to Widgets -> Front page - counter sidebar & place the ["Book Me Memories"] - Counter widget in here.', 'book-me-memories' ),
+        'panel'         => 'book-me-memories_frontpage_panel'
     )
 );
 
@@ -26,7 +26,7 @@ $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_counter_general_show',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Show this section?', 'illdy' ),
+        'label'     => __( 'Show this section?', 'book-me-memories' ),
         'section'   => $prefix . '_counter_general',
         'priority'  => 1
     ) )
@@ -36,17 +36,17 @@ $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize,
 // Type of Background
 $wp_customize->add_setting( $prefix . '_counter_background_type', array(
     'default'           => 'image',
-    'sanitize_callback' => 'illdy_sanitize_radio_buttons',
+    'sanitize_callback' => 'book-me-memories_sanitize_radio_buttons',
     'transport'         => 'postMessage'
 ) );
 $wp_customize->add_control( $prefix . '_counter_background_type', array(
-    'label'     => __( 'Type of Background', 'illdy' ),
+    'label'     => __( 'Type of Background', 'book-me-memories' ),
     'section'   => $prefix .'_counter_general',
     'settings'  => $prefix . '_counter_background_type',
     'type'      => 'radio',
     'choices'   => array(
-        'image'     => __( 'Image', 'illdy' ),
-        'color'     => __( 'Color', 'illdy' )
+        'image'     => __( 'Image', 'book-me-memories' ),
+        'color'     => __( 'Color', 'book-me-memories' )
     ),
     'priority'  => 1
 ) );
@@ -64,7 +64,7 @@ $wp_customize->add_control(
     new WP_Customize_Image_Control(
         $wp_customize, $prefix . '_counter_background_image',
         array(
-            'label'     => __( 'Background Image', 'illdy' ),
+            'label'     => __( 'Background Image', 'book-me-memories' ),
             'section'   => $prefix .'_counter_general',
             'settings'  => $prefix . '_counter_background_image',
             'priority'  => 2
@@ -86,7 +86,7 @@ $wp_customize->add_control(
     $wp_customize, 
     $prefix . '_counter_background_color',
     array(
-        'label'     => __( 'Background Color', 'illdy' ),
+        'label'     => __( 'Background Color', 'book-me-memories' ),
         'section'   => $prefix .'_counter_general',
         'settings'  => $prefix . '_counter_background_color',
         'priority'  => 3
@@ -103,7 +103,7 @@ $wp_customize->add_control(
         $wp_customize,
         $prefix .'_counters_widget_button',
         array(
-            'text'         => __( 'Add & Edit Counters', 'illdy' ),
+            'text'         => __( 'Add & Edit Counters', 'book-me-memories' ),
             'section_id'    => 'sidebar-widgets-front-page-counter-sidebar',
             'icon'          => 'dashicons-plus',
             'section'       => $prefix .'_counter_general',

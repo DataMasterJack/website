@@ -13,7 +13,7 @@ class Book Me Memories_Customize_Section_Pro extends WP_Customize_Section {
 	 * @access public
 	 * @var    string
 	 */
-	public $type = 'illdy-pro-section';
+	public $type = 'book-me-memories-pro-section';
 	/**
 	 * Custom button text to output.
 	 *

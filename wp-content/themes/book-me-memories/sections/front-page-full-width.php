@@ -3,14 +3,14 @@
  *	The template for displaying about section in front page.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php
 
-$general_title = get_theme_mod( 'illdy_full_width_general_title' );
-$general_entry = get_theme_mod( 'illdy_full_width_general_entry' );
-$padding = get_theme_mod( 'illdy_full_width_padding', 1 );
+$general_title = get_theme_mod( 'book-me-memories_full_width_general_title' );
+$general_entry = get_theme_mod( 'book-me-memories_full_width_general_entry' );
+$padding = get_theme_mod( 'book-me-memories_full_width_padding', 1 );
 
 ?>
 

@@ -1,18 +1,18 @@
 <?php
 // Set Panel ID
-$panel_id = 'illdy_full_width';
+$panel_id = 'book-me-memories_full_width';
 
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 $wp_customize->add_section( $panel_id,
     array(
-        'priority'          => illdy_get_section_position($panel_id),
+        'priority'          => book-me-memories_get_section_position($panel_id),
         'capability'        => 'edit_theme_options',
         'theme_supports'    => '',
-        'title'             => __( 'Full Width Section', 'illdy' ),
-        'description'       => __( 'Control title and description of full width section.', 'illdy' ),
-        'panel'             => 'illdy_frontpage_panel'
+        'title'             => __( 'Full Width Section', 'book-me-memories' ),
+        'description'       => __( 'Control title and description of full width section.', 'book-me-memories' ),
+        'panel'             => 'book-me-memories_frontpage_panel'
     )
 );
 
@@ -28,7 +28,7 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_full_width_general_show',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Show this section?', 'illdy' ),
+        'label'     => __( 'Show this section?', 'book-me-memories' ),
         'section'   => $panel_id,
         'priority'  => 1
     ) )
@@ -46,7 +46,7 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_full_width_padding',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Add padding to section ?', 'illdy' ),
+        'label'     => __( 'Add padding to section ?', 'book-me-memories' ),
         'section'   => $panel_id,
         'priority'  => 1
     ) )
@@ -55,7 +55,7 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
 // Title
 $wp_customize->add_setting( $prefix .'_full_width_general_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
         'default'           => '',
         'transport'         => 'postMessage'
     )
@@ -63,8 +63,8 @@ $wp_customize->add_setting( $prefix .'_full_width_general_title',
 $wp_customize->add_control(
     $prefix .'_full_width_general_title',
     array(
-        'label'         => __( 'Title', 'illdy' ),
-        'description'   => __( 'Add the title for this section.', 'illdy'),
+        'label'         => __( 'Title', 'book-me-memories' ),
+        'description'   => __( 'Add the title for this section.', 'book-me-memories'),
         'section'       => $panel_id,
         'priority'      => 2
     )
@@ -84,8 +84,8 @@ $wp_customize->add_control( new Epsilon_Editor_Custom_Control(
     $wp_customize,
     $prefix .'_full_width_general_entry',
     array(
-        'label'         => __( 'Entry', 'illdy' ),
-        'description'   => __( 'Add the content for this section.', 'illdy'),
+        'label'         => __( 'Entry', 'book-me-memories' ),
+        'description'   => __( 'Add the content for this section.', 'book-me-memories'),
         'section'       => $panel_id,
         'priority'      => 3,
     ) )
@@ -104,7 +104,7 @@ $wp_customize->add_control(
         $wp_customize,
         $prefix .'_full_width_widget_button',
         array(
-            'text'         => __( 'Add & Edit widgets', 'illdy' ),
+            'text'         => __( 'Add & Edit widgets', 'book-me-memories' ),
             'section_id'    => 'sidebar-widgets-front-page-full-width-sidebar',
             'icon'          => 'dashicons-plus',
             'section'       => $panel_id,
@@ -124,7 +124,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
         'section'   => $panel_id,
         'buttons'   => array(
             array(
-                'name' => __( 'Colors', 'illdy' ),
+                'name' => __( 'Colors', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_full_width_title_color',
                     $prefix . '_full_width_descriptions_color',
@@ -134,7 +134,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
                 'active' => true
                 ),
             array(
-                'name' => __( 'Backgrounds', 'illdy' ),
+                'name' => __( 'Backgrounds', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_full_width_general_image',
                     $prefix . '_full_width_background_size',
@@ -154,7 +154,7 @@ $wp_customize->add_setting( $prefix . '_full_width_general_image', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $prefix . '_full_width_general_image', array(
-    'label'    => __( 'Background Image', 'illdy' ),
+    'label'    => __( 'Background Image', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_full_width_general_image',
 ) ) );
@@ -169,7 +169,7 @@ $wp_customize->add_setting( $prefix.'_full_width_background_position_y', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_customize, $prefix.'_full_width_background_position', array(
-    'label'    => __( 'Background Position', 'illdy' ),
+    'label'    => __( 'Background Position', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => array(
         'x' => $prefix.'_full_width_background_position_x',
@@ -178,17 +178,17 @@ $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_cu
 ) ) );
 $wp_customize->add_setting( $prefix . '_full_width_background_size', array(
     'default' => 'cover',
-    'sanitize_callback' => 'illdy_sanitize_background_size',
+    'sanitize_callback' => 'book-me-memories_sanitize_background_size',
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_full_width_background_size', array(
-    'label'      => __( 'Image Size', 'illdy' ),
+    'label'      => __( 'Image Size', 'book-me-memories' ),
     'section'    => $panel_id,
     'type'       => 'select',
     'choices'    => array(
-        'auto'    => __( 'Original', 'illdy' ),
-        'contain' => __( 'Fit to Screen', 'illdy' ),
-        'cover'   => __( 'Fill Screen', 'illdy' ),
+        'auto'    => __( 'Original', 'book-me-memories' ),
+        'contain' => __( 'Fit to Screen', 'book-me-memories' ),
+        'cover'   => __( 'Fill Screen', 'book-me-memories' ),
     ),
 ) );
 
@@ -200,7 +200,7 @@ $wp_customize->add_setting( $prefix . '_full_width_background_repeat', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_full_width_background_repeat', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Repeat Background Image', 'illdy' ),
+    'label'       => __( 'Repeat Background Image', 'book-me-memories' ),
     'section'     => $panel_id,
 ) ) );
 
@@ -212,7 +212,7 @@ $wp_customize->add_setting( $prefix . '_full_width_background_attachment', array
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_full_width_background_attachment', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Scroll with Page', 'illdy' ),
+    'label'       => __( 'Scroll with Page', 'book-me-memories' ),
     'section'     => $panel_id,
 ) ) );
 
@@ -223,7 +223,7 @@ $wp_customize->add_setting( $prefix . '_full_width_general_color', array(
 
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_full_width_general_color', array(
-    'label'    => __( 'Background Color', 'illdy' ),
+    'label'    => __( 'Background Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_full_width_general_color',
 ) ) );
@@ -234,7 +234,7 @@ $wp_customize->add_setting( $prefix . '_full_width_title_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_full_width_title_color', array(
-    'label'    => __( 'Title Color', 'illdy' ),
+    'label'    => __( 'Title Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_full_width_title_color',
 ) ) );
@@ -245,7 +245,7 @@ $wp_customize->add_setting( $prefix . '_full_width_descriptions_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_full_width_descriptions_color', array(
-    'label'    => __( 'Description Color', 'illdy' ),
+    'label'    => __( 'Description Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_full_width_descriptions_color',
 ) ) );
@@ -256,7 +256,7 @@ $wp_customize->add_setting( $prefix . '_full_width_full_text', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_full_width_full_text', array(
-    'label'    => __( 'Title & Description Color for Full & Small Parallax Widget', 'illdy' ),
+    'label'    => __( 'Title & Description Color for Full & Small Parallax Widget', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_full_width_full_text',
 ) ) );

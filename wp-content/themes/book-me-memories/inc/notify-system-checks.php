@@ -32,9 +32,9 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		 * @return mixed
 		 */
 		public static function version_check( $ver ) {
-			$illdy = wp_get_theme();
+			$book-me-memories = wp_get_theme();
 
-			return version_compare( $illdy['Version'], $ver, '>=' );
+			return version_compare( $book-me-memories['Version'], $ver, '>=' );
 		}
 
 		/**
@@ -58,7 +58,7 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		/**
 		 * @return bool
 		 */
-		public static function illdy_has_posts() {
+		public static function book-me-memories_has_posts() {
 			$args  = array( "s" => 'Gary Johns: \'What is Aleppo\'' );
 			$query = get_posts( $args );
 
@@ -75,7 +75,7 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		public static function has_content() {
 			$check = array(
 				'widgets' => self::has_widgets(),
-				'posts'   => self::illdy_has_posts(),
+				'posts'   => self::book-me-memories_has_posts(),
 			);
 
 			if ( $check['widgets'] && $check['posts'] ) {
@@ -208,29 +208,29 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		public static function widget_importer_exporter_title() {
 			$installed = self::check_plugin_is_installed( 'widget-importer-exporter' );
 			if ( ! $installed ) {
-				return __( 'Install: Widget Importer Exporter Plugin', 'illdy' );
+				return __( 'Install: Widget Importer Exporter Plugin', 'book-me-memories' );
 			}
 
 			$active = self::check_plugin_is_active( 'widget-importer-exporter' );
 			if ( $installed && ! $active ) {
-				return __( 'Activate: Widget Importer Exporter Plugin', 'illdy' );
+				return __( 'Activate: Widget Importer Exporter Plugin', 'book-me-memories' );
 			}
 
-			return __( 'Install: Widget Importer Exporter Plugin', 'illdy' );
+			return __( 'Install: Widget Importer Exporter Plugin', 'book-me-memories' );
 		}
 
 		public static function wordpress_importer_title() {
 			$installed = self::check_plugin_is_installed( 'wordpress-importer' );
 			if ( ! $installed ) {
-				return __( 'Install: WordPress Importer', 'illdy' );
+				return __( 'Install: WordPress Importer', 'book-me-memories' );
 			}
 
 			$active = self::check_plugin_is_active( 'wordpress-importer' );
 			if ( $installed && ! $active ) {
-				return __( 'Activate: WordPress Importer', 'illdy' );
+				return __( 'Activate: WordPress Importer', 'book-me-memories' );
 			}
 
-			return __( 'Install: WordPress Importer', 'illdy' );
+			return __( 'Install: WordPress Importer', 'book-me-memories' );
 		}
 
 		/**
@@ -239,29 +239,29 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		public static function wordpress_importer_description() {
 			$installed = self::check_plugin_is_installed( 'wordpress-importer' );
 			if ( ! $installed ) {
-				return __( 'Please install the WordPress Importer to create the demo content.', 'illdy' );
+				return __( 'Please install the WordPress Importer to create the demo content.', 'book-me-memories' );
 			}
 
 			$active = self::check_plugin_is_active( 'wordpress-importer' );
 			if ( $installed && ! $active ) {
-				return __( 'Please activate the WordPress Importer to create the demo content.', 'illdy' );
+				return __( 'Please activate the WordPress Importer to create the demo content.', 'book-me-memories' );
 			}
 
-			return __( 'Please install the WordPress Importer to create the demo content.', 'illdy' );
+			return __( 'Please install the WordPress Importer to create the demo content.', 'book-me-memories' );
 		}
 
 		public static function widget_importer_exporter_description() {
 			$installed = self::check_plugin_is_installed( 'widget-importer-exporter' );
 			if ( ! $installed ) {
-				return __( 'Please install the WordPress widget importer to create the demo content', 'illdy' );
+				return __( 'Please install the WordPress widget importer to create the demo content', 'book-me-memories' );
 			}
 
 			$active = self::check_plugin_is_active( 'widget-importer-exporter' );
 			if ( $installed && ! $active ) {
-				return __( 'Please activate the WordPress Widget Importer to create the demo content.', 'illdy' );
+				return __( 'Please activate the WordPress Widget Importer to create the demo content.', 'book-me-memories' );
 			}
 
-			return __( 'Please install the WordPress widget importer to create the demo content', 'illdy' );
+			return __( 'Please install the WordPress widget importer to create the demo content', 'book-me-memories' );
 
 		}
 
@@ -293,11 +293,11 @@ if ( ! class_exists( 'MT_Notify_System' ) ) {
 		public static function create_plugin_title( $plugin_title, $plugin_slug ){
 			$installed = self::check_plugin_is_installed( $plugin_slug );
 			if ( ! $installed ) {
-				return __( 'Install : ', 'illdy' ).$plugin_title;
+				return __( 'Install : ', 'book-me-memories' ).$plugin_title;
 			}elseif ( ! self::check_plugin_is_active( $plugin_slug ) && $installed ) {
-				return __( 'Activate : ', 'illdy' ).$plugin_title;
+				return __( 'Activate : ', 'book-me-memories' ).$plugin_title;
 			}else{
-				return __( 'Update : ', 'illdy' ).$plugin_title;
+				return __( 'Update : ', 'book-me-memories' ).$plugin_title;
 			}
 		}
 

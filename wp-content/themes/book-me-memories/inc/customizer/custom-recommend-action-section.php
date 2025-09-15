@@ -13,7 +13,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 	 * @access public
 	 * @var    string
 	 */
-	public $type = 'illdy-recomended-section';
+	public $type = 'book-me-memories-recomended-section';
 	/**
 	 * Custom button text to output.
 	 *
@@ -96,7 +96,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 	public function call_plugin_api( $slug ) {
 		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
 
-		if ( false === ( $call_api = get_transient( 'illdy_plugin_information_transient_' . $slug ) ) ) {
+		if ( false === ( $call_api = get_transient( 'book-me-memories_plugin_information_transient_' . $slug ) ) ) {
 			$call_api = plugins_api( 'plugin_information', array(
 				'slug'   => $slug,
 				'fields' => array(
@@ -117,7 +117,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 					'icons'             => true
 				)
 			) );
-			set_transient( 'illdy_plugin_information_transient_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
+			set_transient( 'book-me-memories_plugin_information_transient_' . $slug, $call_api, 30 * MINUTE_IN_SECONDS );
 		}
 
 		return $call_api;
@@ -132,64 +132,64 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 	 */
 	public function json() {
 		$json = parent::json();
-		global $illdy_required_actions, $illdy_recommended_plugins;
+		global $book-me-memories_required_actions, $book-me-memories_recommended_plugins;
 		$formatted_array = array();
-		$illdy_show_required_actions = get_option( "illdy_show_required_actions" );
-		foreach ( $illdy_required_actions as $key => $illdy_required_action ) {
-			if ( @$illdy_show_required_actions[ $illdy_required_action['id'] ] === false ) {
+		$book-me-memories_show_required_actions = get_option( "book-me-memories_show_required_actions" );
+		foreach ( $book-me-memories_required_actions as $key => $book-me-memories_required_action ) {
+			if ( @$book-me-memories_show_required_actions[ $book-me-memories_required_action['id'] ] === false ) {
 				continue;
 			}
-			if ( $illdy_required_action['check'] ) {
+			if ( $book-me-memories_required_action['check'] ) {
 				continue;
 			}
 
-			$illdy_required_action['index'] = $key + 1;
+			$book-me-memories_required_action['index'] = $key + 1;
 
-			if ( isset($illdy_required_action['type']) && $illdy_required_action['type'] == 'plugin' ) {
-				$active = $this->check_active( $illdy_required_action['plugin_slug'] );
+			if ( isset($book-me-memories_required_action['type']) && $book-me-memories_required_action['type'] == 'plugin' ) {
+				$active = $this->check_active( $book-me-memories_required_action['plugin_slug'] );
 				if ( !isset($active['plugin_path']) ) {
 					$active['plugin_path'] = '';
 				}
 
-				if ( $active['needs'] == 'deactivate' && !MT_Notify_System::check_plugin_update( $illdy_required_action['plugin_slug'] ) ) {
+				if ( $active['needs'] == 'deactivate' && !MT_Notify_System::check_plugin_update( $book-me-memories_required_action['plugin_slug'] ) ) {
 					$active['needs'] = 'update';
 				}
 
-				$illdy_required_action['url']    = $this->create_action_link( $active['needs'], $illdy_required_action['plugin_slug'], $active['plugin_path'] );
+				$book-me-memories_required_action['url']    = $this->create_action_link( $active['needs'], $book-me-memories_required_action['plugin_slug'], $active['plugin_path'] );
 				if ( $active['needs'] !== 'install' && $active['status'] ) {
-					$illdy_required_action['class'] = 'active';
+					$book-me-memories_required_action['class'] = 'active';
 				}else{
-					$illdy_required_action['class'] = '';
+					$book-me-memories_required_action['class'] = '';
 				}
 
 				switch ( $active['needs'] ) {
 					case 'install':
-						$illdy_required_action['button_class'] = 'install-now button';
-						$illdy_required_action['button_label'] = __( 'Install', 'illdy' );
+						$book-me-memories_required_action['button_class'] = 'install-now button';
+						$book-me-memories_required_action['button_label'] = __( 'Install', 'book-me-memories' );
 						break;
 					case 'activate':
-						$illdy_required_action['button_class'] = 'activate-now button button-primary';
-						$illdy_required_action['button_label'] = __( 'Activate', 'illdy' );
+						$book-me-memories_required_action['button_class'] = 'activate-now button button-primary';
+						$book-me-memories_required_action['button_label'] = __( 'Activate', 'book-me-memories' );
 						break;
 					case 'update':
-						$illdy_required_action['button_class'] = 'update-now button button-primary';
-						$illdy_required_action['button_label'] = __( 'Update', 'illdy' );
+						$book-me-memories_required_action['button_class'] = 'update-now button button-primary';
+						$book-me-memories_required_action['button_label'] = __( 'Update', 'book-me-memories' );
 						break;
 					case 'deactivate':
-						$illdy_required_action['button_class'] = 'deactivate-now button';
-						$illdy_required_action['button_label'] = __( 'Deactivate', 'illdy' );
+						$book-me-memories_required_action['button_class'] = 'deactivate-now button';
+						$book-me-memories_required_action['button_label'] = __( 'Deactivate', 'book-me-memories' );
 						break;
 				}
 
-				$illdy_required_action['path'] = $active['plugin_path'];
+				$book-me-memories_required_action['path'] = $active['plugin_path'];
 
 			}
-			$formatted_array[] = $illdy_required_action;
+			$formatted_array[] = $book-me-memories_required_action;
 		}
 
 		$customize_plugins = array();
-		$illdy_show_recommended_plugins = get_option( "illdy_show_recommended_plugins" );
-		foreach ( $illdy_recommended_plugins as $slug => $plugin_opt ) {
+		$book-me-memories_show_recommended_plugins = get_option( "book-me-memories_show_recommended_plugins" );
+		foreach ( $book-me-memories_recommended_plugins as $slug => $plugin_opt ) {
 			
 			if ( !$plugin_opt['recommended'] ) {
 				continue;
@@ -199,54 +199,54 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 				continue;
 			}
 
-			if ( isset($illdy_show_recommended_plugins[$slug]) && $illdy_show_recommended_plugins[$slug] ) {
+			if ( isset($book-me-memories_show_recommended_plugins[$slug]) && $book-me-memories_show_recommended_plugins[$slug] ) {
 				continue;
 			}
 
 			$active = $this->check_active( $slug );
-			$illdy_recommended_plugin['url']    = $this->create_action_link( $active['needs'], $slug );
+			$book-me-memories_recommended_plugin['url']    = $this->create_action_link( $active['needs'], $slug );
 			if ( $active['needs'] !== 'install' && $active['status'] ) {
-				$illdy_recommended_plugin['class'] = 'active';
+				$book-me-memories_recommended_plugin['class'] = 'active';
 			}else{
-				$illdy_recommended_plugin['class'] = '';
+				$book-me-memories_recommended_plugin['class'] = '';
 			}
 
 			switch ( $active['needs'] ) {
 				case 'install':
-					$illdy_recommended_plugin['button_class'] = 'install-now button';
-					$illdy_recommended_plugin['button_label'] = __( 'Install', 'illdy' );
+					$book-me-memories_recommended_plugin['button_class'] = 'install-now button';
+					$book-me-memories_recommended_plugin['button_label'] = __( 'Install', 'book-me-memories' );
 					break;
 				case 'activate':
-					$illdy_recommended_plugin['button_class'] = 'activate-now button button-primary';
-					$illdy_recommended_plugin['button_label'] = __( 'Activate', 'illdy' );
+					$book-me-memories_recommended_plugin['button_class'] = 'activate-now button button-primary';
+					$book-me-memories_recommended_plugin['button_label'] = __( 'Activate', 'book-me-memories' );
 					break;
 				case 'deactivate':
-					$illdy_recommended_plugin['button_class'] = 'deactivate-now button';
-					$illdy_recommended_plugin['button_label'] = __( 'Deactivate', 'illdy' );
+					$book-me-memories_recommended_plugin['button_class'] = 'deactivate-now button';
+					$book-me-memories_recommended_plugin['button_label'] = __( 'Deactivate', 'book-me-memories' );
 					break;
 			}
 			$info   = $this->call_plugin_api( $slug );
-			$illdy_recommended_plugin['id'] = $slug;
-			$illdy_recommended_plugin['path'] = $active['plugin_path'];
-			$illdy_recommended_plugin['plugin_slug'] = $slug;
-			$illdy_recommended_plugin['description'] = $info->short_description;
-			$illdy_recommended_plugin['title'] = $illdy_recommended_plugin['button_label'].': '.$info->name;
+			$book-me-memories_recommended_plugin['id'] = $slug;
+			$book-me-memories_recommended_plugin['path'] = $active['plugin_path'];
+			$book-me-memories_recommended_plugin['plugin_slug'] = $slug;
+			$book-me-memories_recommended_plugin['description'] = $info->short_description;
+			$book-me-memories_recommended_plugin['title'] = $book-me-memories_recommended_plugin['button_label'].': '.$info->name;
 
-			$customize_plugins[] = $illdy_recommended_plugin;
+			$customize_plugins[] = $book-me-memories_recommended_plugin;
 
 		}
 
 		$json['required_actions'] = $formatted_array;
 		$json['recommended_plugins'] = $customize_plugins;
-		$json['total_actions'] = count($illdy_required_actions);
+		$json['total_actions'] = count($book-me-memories_required_actions);
 		$json['social_text'] = $this->social_text;
 		$json['plugin_text'] = $this->plugin_text;
 		$json['facebook'] = $this->facebook;
-		$json['facebook_text'] = __( 'Facebook', 'illdy' );
+		$json['facebook_text'] = __( 'Facebook', 'book-me-memories' );
 		$json['twitter'] = $this->twitter;
-		$json['twitter_text'] = __( 'Twitter', 'illdy' );
+		$json['twitter_text'] = __( 'Twitter', 'book-me-memories' );
 		$json['wp_review'] = $this->wp_review;
-		$json['wp_review_text'] = __( 'Review this theme on w.org', 'illdy' );
+		$json['wp_review_text'] = __( 'Review this theme on w.org', 'book-me-memories' );
 		if ( $this->wp_review ) {
 			$json['theme_slug'] = get_template();
 		}
@@ -277,7 +277,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 					<# } #>
 				</span>
 				<# if( data.required_actions.length > 0 ){ #>
-					<span class="illdy-actions-count">
+					<span class="book-me-memories-actions-count">
 						<span class="current-index">{{ data.required_actions[0].index }}</span>
 						/
 						{{ data.total_actions }}
@@ -291,7 +291,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 							<# if( !data.required_actions[action].check ){ #>
 								<div class="epsilon-recommeded-actions">
 									<p class="title">{{ data.required_actions[action].title }}</p>
-									<span data-action="dismiss" class="dashicons dashicons-visibility illdy-dismiss-required-action" id="{{ data.required_actions[action].id }}"></span>
+									<span data-action="dismiss" class="dashicons dashicons-visibility book-me-memories-dismiss-required-action" id="{{ data.required_actions[action].id }}"></span>
 									<div class="description">{{{ data.required_actions[action].description }}}</div>
 									<# if( data.required_actions[action].plugin_slug ){ #>
 										<div class="custom-action">
@@ -318,7 +318,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 							<# if( !data.recommended_plugins[action].check ){ #>
 								<div class="epsilon-recommeded-actions">
 									<p class="title">{{ data.recommended_plugins[action].title }}</p>
-									<span data-action="dismiss" class="dashicons dashicons-visibility illdy-recommended-plugin-button" id="{{ data.recommended_plugins[action].id }}"></span>
+									<span data-action="dismiss" class="dashicons dashicons-visibility book-me-memories-recommended-plugin-button" id="{{ data.recommended_plugins[action].id }}"></span>
 									<div class="description">{{{ data.recommended_plugins[action].description }}}</div>
 									<# if( data.recommended_plugins[action].plugin_slug ){ #>
 										<div class="custom-action">
@@ -348,7 +348,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 							<a href="{{ data.twitter }}" class="button social"><span class="dashicons dashicons-twitter"></span>{{ data.twitter_text }}</a>
 						<# } #>
 						<# if( data.wp_review ){ #>
-							<a href="https://wordpress.org/support/theme/{{ data.theme_slug }}/reviews/#new-post" class="button button-primary illdy-wordpress"><span class="dashicons dashicons-wordpress"></span>{{ data.wp_review_text }}</a>
+							<a href="https://wordpress.org/support/theme/{{ data.theme_slug }}/reviews/#new-post" class="button button-primary book-me-memories-wordpress"><span class="dashicons dashicons-wordpress"></span>{{ data.wp_review_text }}</a>
 						<# } #>
 					</p>
 				<# }else{ #>
@@ -361,7 +361,7 @@ class Book Me Memories_Customize_Section_Recommend extends WP_Customize_Section 
 							<a href="{{ data.twitter }}" class="button social"><span class="dashicons dashicons-twitter"></span>{{ data.twitter_text }}</a>
 						<# } #>
 						<# if( data.wp_review ){ #>
-							<a href="https://wordpress.org/support/theme/{{ data.theme_slug }}/reviews/#new-post" class="button button-primary illdy-wordpress"><span class="dashicons dashicons-wordpress"></span>{{ data.wp_review_text }}</a>
+							<a href="https://wordpress.org/support/theme/{{ data.theme_slug }}/reviews/#new-post" class="button button-primary book-me-memories-wordpress"><span class="dashicons dashicons-wordpress"></span>{{ data.wp_review_text }}</a>
 						<# } #>
 					</p>
 				<# } #>

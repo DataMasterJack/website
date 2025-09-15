@@ -3,16 +3,16 @@
  *	The template for dispalying the team section in front page.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php
 if ( current_user_can( 'edit_theme_options' ) ) {
-	$general_title = get_theme_mod( 'illdy_team_general_title', __( 'Team', 'illdy' ) );
-	$general_entry = get_theme_mod( 'illdy_team_general_entry', __( 'Meet the people that are going to take your business to the next level.', 'illdy' ) );
+	$general_title = get_theme_mod( 'book-me-memories_team_general_title', __( 'Team', 'book-me-memories' ) );
+	$general_entry = get_theme_mod( 'book-me-memories_team_general_entry', __( 'Meet the people that are going to take your business to the next level.', 'book-me-memories' ) );
 }else{
-	$general_title = get_theme_mod( 'illdy_team_general_title' );
-	$general_entry = get_theme_mod( 'illdy_team_general_entry' );
+	$general_title = get_theme_mod( 'book-me-memories_team_general_title' );
+	$general_entry = get_theme_mod( 'book-me-memories_team_general_entry' );
 }
 
 ?>
@@ -46,15 +46,15 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 					dynamic_sidebar( 'front-page-team-sidebar' );
 				elseif ( current_user_can( 'edit_theme_options' ) & defined("ILLDY_COMPANION") ):
 					$the_widget_args = array(
-						'before_widget'	=> '<div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 widget_illdy_person">',
+						'before_widget'	=> '<div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 widget_book-me-memories_person">',
 						'after_widget'	=> '</div>',
 						'before_title'	=> '',
 						'after_title'	=> ''
 					);
 
-					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'Mark Lawrance', 'illdy' ) .'&image='. get_template_directory_uri() .esc_url( '/layout/images/front-page/front-page-team-1.jpg' ) .'&position='. __( 'Web Designer', 'illdy' ) .'&entry='. __( 'Creative, detail-oriented, always focused.', 'illdy' ) .'&facebook_url='. get_template_directory_uri() . esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#f18b6d', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'Jane  Stenton', 'illdy' ) .'&image='. get_template_directory_uri() . esc_url( '/layout/images/front-page/front-page-team-2.jpg' ) .'&position='. __( 'SEO Specialist', 'illdy' ) .'&entry='. __( 'Curious, tech-geeck and gets serious when it comes to work.', 'illdy' ) .'&facebook_url='. esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#f1d204', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'John Smith', 'illdy' ) .'&image='. get_template_directory_uri() . esc_url( '/layout/images/front-page/front-page-team-3.jpg' ) .'&position='. __( 'Developer', 'illdy' ) .'&entry='. __( 'Enthusiastic, passionate with great sense of humor.', 'illdy' ) .'&facebook_url='. esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#6a4d8a', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'Mark Lawrance', 'book-me-memories' ) .'&image='. get_template_directory_uri() .esc_url( '/layout/images/front-page/front-page-team-1.jpg' ) .'&position='. __( 'Web Designer', 'book-me-memories' ) .'&entry='. __( 'Creative, detail-oriented, always focused.', 'book-me-memories' ) .'&facebook_url='. get_template_directory_uri() . esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#f18b6d', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'Jane  Stenton', 'book-me-memories' ) .'&image='. get_template_directory_uri() . esc_url( '/layout/images/front-page/front-page-team-2.jpg' ) .'&position='. __( 'SEO Specialist', 'book-me-memories' ) .'&entry='. __( 'Curious, tech-geeck and gets serious when it comes to work.', 'book-me-memories' ) .'&facebook_url='. esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#f1d204', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Person', 'title='. __( 'John Smith', 'book-me-memories' ) .'&image='. get_template_directory_uri() . esc_url( '/layout/images/front-page/front-page-team-3.jpg' ) .'&position='. __( 'Developer', 'book-me-memories' ) .'&entry='. __( 'Enthusiastic, passionate with great sense of humor.', 'book-me-memories' ) .'&facebook_url='. esc_url( '#' ) .'&twitter_url='. esc_url( '#' ) .'&linkedin_url='. esc_url( '#' ) .'&color=#6a4d8a', $the_widget_args );
 				endif;
 				?>
 			</div><!--/.row-->

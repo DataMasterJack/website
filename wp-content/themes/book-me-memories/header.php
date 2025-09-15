@@ -3,17 +3,17 @@
  *    The template for displaying the header.
  *
  * @package    WordPress
- * @subpackage illdy
+ * @subpackage book-me-memories
  */
 ?>
 <?php
 $logo_id                   = get_theme_mod( 'custom_logo' );
 $logo_image                = wp_get_attachment_image_src( $logo_id, 'full' );
-$text_logo                 = get_theme_mod( 'illdy_text_logo', __( 'Book Me Memories', 'illdy' ) );
-$jumbotron_general_image   = get_theme_mod( 'illdy_jumbotron_general_image', esc_url( get_template_directory_uri() . '/layout/images/front-page/front-page-header.png' ) );
-$jumbotron_single_image    = get_theme_mod( 'illdy_jumbotron_enable_featured_image', false );
-$jumbotron_parallax_enable = get_theme_mod( 'illdy_jumbotron_enable_parallax_effect', true );
-$preloader_enable          = get_theme_mod( 'illdy_preloader_enable', 1 );
+$text_logo                 = get_theme_mod( 'book-me-memories_text_logo', __( 'Book Me Memories', 'book-me-memories' ) );
+$jumbotron_general_image   = get_theme_mod( 'book-me-memories_jumbotron_general_image', esc_url( get_template_directory_uri() . '/layout/images/front-page/front-page-header.png' ) );
+$jumbotron_single_image    = get_theme_mod( 'book-me-memories_jumbotron_enable_featured_image', false );
+$jumbotron_parallax_enable = get_theme_mod( 'book-me-memories_jumbotron_enable_parallax_effect', true );
+$preloader_enable          = get_theme_mod( 'book-me-memories_preloader_enable', 1 );
 
 $style = '';
 
@@ -40,7 +40,7 @@ if ( $jumbotron_parallax_enable == true ) {
 	$style .= 'background-attachment: fixed;';
 }
 
-if ( ( is_single() || is_page() || is_archive() ) && get_theme_mod( 'illdy_archive_page_background_stretch' ) == 2 ) {
+if ( ( is_single() || is_page() || is_archive() ) && get_theme_mod( 'book-me-memories_archive_page_background_stretch' ) == 2 ) {
 	$style .= 'background-size:contain;background-repeat:no-repeat;';
 }
 

@@ -3,11 +3,11 @@
  *    The template for dispalying the single.
  *
  * @package    WordPress
- * @subpackage illdy
+ * @subpackage book-me-memories
  */
 
 global $post;
-$sidebar_enabled = get_post_meta( $post->ID, 'illdy-sidebar-enable', true );
+$sidebar_enabled = get_post_meta( $post->ID, 'book-me-memories-sidebar-enable', true );
 
 ?>
 

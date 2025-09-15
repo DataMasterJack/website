@@ -43,33 +43,33 @@ if ( ! class_exists( 'Epsilon_Color_Scheme' ) ) {
 		public function get_customizer_controls() {
 			return array(
 				'epsilon_accent_color' => array(
-					'label'       => __( 'Accent Color', 'illdy' ),
-					'description' => __( 'The main color used in Book Me Memories.', 'illdy' ),
+					'label'       => __( 'Accent Color', 'book-me-memories' ),
+					'description' => __( 'The main color used in "Book Me Memories".', 'book-me-memories' ),
 					'default'     => '#f1d204',
 					'section'     => 'colors'
 				),
 				'epsilon_secondary_accent_color' => array(
-					'label'       => __( 'Secondary Accent Color', 'illdy' ),
-					'description' => __( 'The secondary color used in Book Me Memories.', 'illdy' ),
+					'label'       => __( 'Secondary Accent Color', 'book-me-memories' ),
+					'description' => __( 'The secondary color used in "Book Me Memories".', 'book-me-memories' ),
 					'default'     => '#f18b6d',
 					'section'     => 'colors'
 				),
 				'epsilon_text_color' => array(
-					'label'       => __( 'Text Color', 'illdy' ),
-					'description' => __( 'The color used for headings.', 'illdy' ),
+					'label'       => __( 'Text Color', 'book-me-memories' ),
+					'description' => __( 'The color used for headings.', 'book-me-memories' ),
 					'default'     => '#545454',
 					'section'     => 'colors'
 				),
 				
 				'epsilon_contrast_color' => array(
-					'label'       => __( 'Contrast Color', 'illdy' ),
-					'description' => __( 'The color used for paragraphs.', 'illdy' ),
+					'label'       => __( 'Contrast Color', 'book-me-memories' ),
+					'description' => __( 'The color used for paragraphs.', 'book-me-memories' ),
 					'default'     => '#8c9597',
 					'section'     => 'colors'
 				),
 				'epsilon_hover_color' => array(
-					'label'       => __( 'Hover Color', 'illdy' ),
-					'description' => __( 'The color used for hover on elements.', 'illdy' ),
+					'label'       => __( 'Hover Color', 'book-me-memories' ),
+					'description' => __( 'The color used for hover on elements.', 'book-me-memories' ),
 					'default'     => '#6a4d8a',
 					'section'     => 'colors'
 				),
@@ -235,7 +235,7 @@ if ( ! class_exists( 'Epsilon_Color_Scheme' ) ) {
 				.widget table thead th,
 				#team .section-content .person .person-content h6,
 				.widget_rss cite,
-				.illdy_home_parallax h3 { color: %3$s; }
+				.book-me-memories_home_parallax h3 { color: %3$s; }
 			';
 			return $css;
 		}
@@ -261,7 +261,7 @@ if ( ! class_exists( 'Epsilon_Color_Scheme' ) ) {
 		 */
 		public function enqueue() {
 			$css = $this->generate_css();
-			wp_add_inline_style( 'illdy-main', $css );
+			wp_add_inline_style( 'book-me-memories-main', $css );
 		}
 		/**
 		 * Add the controls to the customizer

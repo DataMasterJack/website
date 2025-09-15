@@ -1,17 +1,17 @@
 <?php
 
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 /***********************************************/
 /******************* General *******************/
 /***********************************************/
 $wp_customize->add_section( $prefix . '_latest_news_general' ,
     array(
-        'title'         => __( 'Latest News Section', 'illdy' ),
-        'description'   => __( 'Control various options for latest news section from front page.', 'illdy' ),
-        'priority'      => illdy_get_section_position($prefix . '_latest_news_general'),
-        'panel' 	    => 'illdy_frontpage_panel'
+        'title'         => __( 'Latest News Section', 'book-me-memories' ),
+        'description'   => __( 'Control various options for latest news section from front page.', 'book-me-memories' ),
+        'priority'      => book-me-memories_get_section_position($prefix . '_latest_news_general'),
+        'panel' 	    => 'book-me-memories_frontpage_panel'
     )
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_latest_news_general_show',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Show this section?', 'illdy' ),
+        'label'     => __( 'Show this section?', 'book-me-memories' ),
         'section'   => $prefix . '_latest_news_general',
         'priority'  => 1
     ) )
@@ -36,16 +36,16 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
 // Title
 $wp_customize->add_setting( $prefix .'_latest_news_general_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
-        'default'           => __( 'Latest News', 'illdy' ),
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
+        'default'           => __( 'Latest News', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_latest_news_general_title',
     array(
-        'label'         => __( 'Title', 'illdy' ),
-        'description'   => __( 'Add the title for this section.', 'illdy'),
+        'label'         => __( 'Title', 'book-me-memories' ),
+        'description'   => __( 'Add the title for this section.', 'book-me-memories'),
         'section'       => $prefix . '_latest_news_general',
         'priority'      => 2
     )
@@ -59,7 +59,7 @@ if ( get_theme_mod( $prefix .'_latest_news_general_entry' ) ) {
     $wp_customize->add_setting( $prefix .'_latest_news_general_entry',
         array(
             'sanitize_callback' => 'wp_kses_post',
-            'default'           => __( 'If you are interested in the latest articles in the industry, take a sneak peek at our blog. You have nothing to loose!', 'illdy' ),
+            'default'           => __( 'If you are interested in the latest articles in the industry, take a sneak peek at our blog. You have nothing to loose!', 'book-me-memories' ),
             'transport'         => 'postMessage'
         )
     );
@@ -67,8 +67,8 @@ if ( get_theme_mod( $prefix .'_latest_news_general_entry' ) ) {
         $wp_customize,
         $prefix .'_latest_news_general_entry',
         array(
-            'label'         => __( 'Entry', 'illdy' ),
-            'description'   => __( 'Add the content for this section.', 'illdy'),
+            'label'         => __( 'Entry', 'book-me-memories' ),
+            'description'   => __( 'Add the content for this section.', 'book-me-memories'),
             'section'       => $prefix . '_latest_news_general',
             'priority'      => 3,
         ) )
@@ -87,8 +87,8 @@ if ( get_theme_mod( $prefix .'_latest_news_general_entry' ) ) {
         new Book Me Memories_Text_Custom_Control(
             $wp_customize, $prefix . '_latest_news_general_entry',
             array(
-                'label'             => __( 'Install Book Me Memories Companion', 'illdy' ),
-                'description'       => sprintf(__( 'In order to edit description please install <a href="%s" target="_blank">Book Me Memories Companion</a>', 'illdy' ), illdy_get_recommended_actions_url()),
+                'label'             => __( 'Install "Book Me Memories" Companion', 'book-me-memories' ),
+                'description'       => sprintf(__( 'In order to edit description please install <a href="%s" target="_blank">"Book Me Memories" Companion</a>', 'book-me-memories' ), book-me-memories_get_recommended_actions_url()),
                 'section'           => $panel_id,
                 'settings'          => $prefix . '_latest_news_general_text',
                 'priority'          => 3,
@@ -105,15 +105,15 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_latest_news_general_en
 $wp_customize->add_setting( $prefix .'_latest_news_button_text',
     array(
         'sanitize_callback' => 'sanitize_text_field',
-        'default'           => __( 'See blog', 'illdy' ),
+        'default'           => __( 'See blog', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_latest_news_button_text',
     array(
-        'label'         => __( 'Button Text', 'illdy' ),
-        'description'   => __( 'Add the button text for this section.', 'illdy'),
+        'label'         => __( 'Button Text', 'book-me-memories' ),
+        'description'   => __( 'Add the button text for this section.', 'book-me-memories'),
         'section'       => $prefix . '_latest_news_general',
         'priority'      => 4
     )
@@ -135,8 +135,8 @@ $wp_customize->add_control( new Epsilon_Control_Slider(
     $wp_customize,
     $prefix .'_latest_news_number_of_posts',
     array(
-        'label'       => esc_html__( 'Number of posts', 'illdy' ),
-        'description' => esc_html__( 'Add the number of posts to show in this section.', 'illdy'),
+        'label'       => esc_html__( 'Number of posts', 'book-me-memories' ),
+        'description' => esc_html__( 'Add the number of posts to show in this section.', 'book-me-memories'),
         'choices'     => array(
             'min'  => 3,
             'max'  => 9,
@@ -159,7 +159,7 @@ $wp_customize->add_control( new Epsilon_Control_Slider(
     $wp_customize,
     $prefix .'_latest_news_words_number',
     array(
-        'label'       => esc_html__( 'Number of words in post entry', 'illdy' ),
+        'label'       => esc_html__( 'Number of words in post entry', 'book-me-memories' ),
         'choices'     => array(
             'min'  => 20,
             'max'  => 100,
@@ -185,7 +185,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
         'section'   => $prefix . '_latest_news_general',
         'buttons'   => array(
             array(
-                'name' => __( 'Colors', 'illdy' ),
+                'name' => __( 'Colors', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_latest_news_title_color',
                     $prefix . '_latest_news_descriptions_color',
@@ -204,7 +204,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
                 'active' => true
                 ),
             array(
-                'name' => __( 'Backgrounds', 'illdy' ),
+                'name' => __( 'Backgrounds', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_latest_news_general_image',
                     $prefix . '_latest_news_background_size',
@@ -224,7 +224,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_general_image', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $prefix . '_latest_news_general_image', array(
-    'label'    => __( 'Background Image', 'illdy' ),
+    'label'    => __( 'Background Image', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_general_image',
 ) ) );
@@ -239,7 +239,7 @@ $wp_customize->add_setting( $prefix.'_latest_news_background_position_y', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_customize, $prefix.'_latest_news_background_position', array(
-    'label'    => __( 'Background Position', 'illdy' ),
+    'label'    => __( 'Background Position', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => array(
         'x' => $prefix.'_latest_news_background_position_x',
@@ -248,17 +248,17 @@ $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_cu
 ) ) );
 $wp_customize->add_setting( $prefix . '_latest_news_background_size', array(
     'default' => 'cover',
-    'sanitize_callback' => 'illdy_sanitize_background_size',
+    'sanitize_callback' => 'book-me-memories_sanitize_background_size',
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_latest_news_background_size', array(
-    'label'      => __( 'Image Size', 'illdy' ),
+    'label'      => __( 'Image Size', 'book-me-memories' ),
     'section'    => $prefix . '_latest_news_general',
     'type'       => 'select',
     'choices'    => array(
-        'auto'    => __( 'Original', 'illdy' ),
-        'contain' => __( 'Fit to Screen', 'illdy' ),
-        'cover'   => __( 'Fill Screen', 'illdy' ),
+        'auto'    => __( 'Original', 'book-me-memories' ),
+        'contain' => __( 'Fit to Screen', 'book-me-memories' ),
+        'cover'   => __( 'Fill Screen', 'book-me-memories' ),
     ),
 ) );
 
@@ -270,7 +270,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_background_repeat', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_latest_news_background_repeat', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Repeat Background Image', 'illdy' ),
+    'label'       => __( 'Repeat Background Image', 'book-me-memories' ),
     'section'     => $prefix . '_latest_news_general',
 ) ) );
 
@@ -282,7 +282,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_background_attachment', arra
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_latest_news_background_attachment', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Scroll with Page', 'illdy' ),
+    'label'       => __( 'Scroll with Page', 'book-me-memories' ),
     'section'     => $prefix . '_latest_news_general',
 ) ) );
 
@@ -295,7 +295,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_general_color', array(
 
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_general_color', array(
-    'label'    => __( 'Background Color', 'illdy' ),
+    'label'    => __( 'Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_general_color',
 ) ) );
@@ -305,7 +305,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_title_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_title_color', array(
-    'label'    => __( 'Title Color', 'illdy' ),
+    'label'    => __( 'Title Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_title_color',
 ) ) );
@@ -316,7 +316,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_descriptions_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_descriptions_color', array(
-    'label'    => __( 'Description Color', 'illdy' ),
+    'label'    => __( 'Description Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_descriptions_color',
 ) ) );
@@ -327,7 +327,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_button_background', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_button_background', array(
-    'label'    => __( 'Blog Button Background Color', 'illdy' ),
+    'label'    => __( 'Blog Button Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_button_background',
 ) ) );
@@ -338,7 +338,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_button_background_hover', ar
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_button_background_hover', array(
-    'label'    => __( 'Blog Button Hover Background Color', 'illdy' ),
+    'label'    => __( 'Blog Button Hover Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_button_background_hover',
 ) ) );
@@ -352,7 +352,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_button_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_button_color', array(
-    'label'    => __( 'Blog Button Text Color', 'illdy' ),
+    'label'    => __( 'Blog Button Text Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_button_color',
 ) ) );
@@ -364,7 +364,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_bakground_color', array
 ) );
 
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_bakground_color', array(
-    'label'    => __( 'Post Box Background Color', 'illdy' ),
+    'label'    => __( 'Post Box Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_bakground_color',
 ) ) );
@@ -375,7 +375,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_text_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_text_color', array(
-    'label'    => __( 'Post Title Color', 'illdy' ),
+    'label'    => __( 'Post Title Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_text_color',
 ) ) );
@@ -386,7 +386,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_text_hover_color', arra
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_text_hover_color', array(
-    'label'    => __( 'Post Title Hover Color', 'illdy' ),
+    'label'    => __( 'Post Title Hover Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_text_hover_color',
 ) ) );
@@ -397,7 +397,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_content_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_content_color', array(
-    'label'    => __( 'Post Content Color', 'illdy' ),
+    'label'    => __( 'Post Content Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_content_color',
 ) ) );
@@ -408,7 +408,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_button_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_button_color', array(
-    'label'    => __( 'Blog Button Background Color', 'illdy' ),
+    'label'    => __( 'Blog Button Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_button_color',
 ) ) );
@@ -419,7 +419,7 @@ $wp_customize->add_setting( $prefix . '_latest_news_post_button_hover_color', ar
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_latest_news_post_button_hover_color', array(
-    'label'    => __( 'Blog Button Hover Background Color', 'illdy' ),
+    'label'    => __( 'Blog Button Hover Background Color', 'book-me-memories' ),
     'section'  => $prefix . '_latest_news_general',
     'settings' => $prefix . '_latest_news_post_button_hover_color',
 ) ) );

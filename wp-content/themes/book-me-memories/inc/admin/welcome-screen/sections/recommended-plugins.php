@@ -2,14 +2,14 @@
 /**
  * Recommended Plugins
  */
-global $illdy_required_actions, $illdy_recommended_plugins;
+global $book-me-memories_required_actions, $book-me-memories_recommended_plugins;
 wp_enqueue_style( 'plugin-install' );
 wp_enqueue_script( 'plugin-install' );
 wp_enqueue_script( 'updates' );
 ?>
 
 <div class="feature-section recommended-plugins three-col demo-import-boxed" id="plugin-filter">
-	<?php foreach ( $illdy_recommended_plugins as $plugin => $prop ) { ?>
+	<?php foreach ( $book-me-memories_recommended_plugins as $plugin => $prop ) { ?>
 		<?php
 		$info   = $this->call_plugin_api( $plugin );
 		$icon   = $this->check_for_icon( $info->icons );
@@ -21,22 +21,22 @@ wp_enqueue_script( 'updates' );
 		switch ( $active['needs'] ) {
 			case 'install':
 				$class = 'install-now button';
-				$label = __( 'Install', 'illdy' );
+				$label = __( 'Install', 'book-me-memories' );
 				break;
 			case 'activate':
 				$class = 'activate-now button button-primary';
-				$label = __( 'Activate', 'illdy' );
+				$label = __( 'Activate', 'book-me-memories' );
 				break;
 			case 'deactivate':
 				$class = 'deactivate-now button';
-				$label = __( 'Deactivate', 'illdy' );
+				$label = __( 'Deactivate', 'book-me-memories' );
 				break;
 		}
 
 		?>
 		<div class="col plugin_box">
 			<img src="<?php echo esc_attr( $icon ) ?>" alt="plugin box image">
-			<span class="version"><?php echo __( 'Version:', 'illdy' ); ?><?php echo $info->version ?></span>
+			<span class="version"><?php echo __( 'Version:', 'book-me-memories' ); ?><?php echo $info->version ?></span>
 			<span
 				class="separator">|</span> <?php echo wp_kses_post( $info->author ) ?>
 			<div

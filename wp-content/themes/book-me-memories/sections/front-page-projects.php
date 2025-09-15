@@ -3,16 +3,16 @@
  *	The template for displaying the projects section in front page.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php
 if ( current_user_can( 'edit_theme_options' ) ) {
-	$general_title = get_theme_mod( 'illdy_projects_general_title', esc_html__( 'Projects', 'illdy' ) );
-	$general_entry = get_theme_mod( 'illdy_projects_general_entry', esc_html__( 'You\'ll love our work. Check it out!', 'illdy' ) );
+	$general_title = get_theme_mod( 'book-me-memories_projects_general_title', esc_html__( 'Projects', 'book-me-memories' ) );
+	$general_entry = get_theme_mod( 'book-me-memories_projects_general_entry', esc_html__( 'You\'ll love our work. Check it out!', 'book-me-memories' ) );
 }else{
-	$general_title = get_theme_mod( 'illdy_projects_general_title' );
-	$general_entry = get_theme_mod( 'illdy_projects_general_entry' );
+	$general_title = get_theme_mod( 'book-me-memories_projects_general_title' );
+	$general_entry = get_theme_mod( 'book-me-memories_projects_general_entry' );
 }
 
 ?>
@@ -46,15 +46,15 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 					dynamic_sidebar( 'front-page-projects-sidebar' );
 				elseif( current_user_can( 'edit_theme_options' ) & defined("ILLDY_COMPANION") ):
 					$the_widget_args = array(
-						'before_widget'	=> '<div class="col-sm-3 col-xs-6 no-padding widget_illdy_project">',
+						'before_widget'	=> '<div class="col-sm-3 col-xs-6 no-padding widget_book-me-memories_project">',
 						'after_widget'	=> '</div>',
 						'before_title'	=> '',
 						'after_title'	=> ''
 					);
-					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 1', 'illdy' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-1.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 2', 'illdy' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-2.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 3', 'illdy' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-3.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 4', 'illdy' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-4.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 1', 'book-me-memories' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-1.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 2', 'book-me-memories' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-2.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 3', 'book-me-memories' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-3.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Project', 'title='. __( 'Project 4', 'book-me-memories' ) .'&image='. get_template_directory_uri().esc_url( '/layout/images/front-page/front-page-project-4.png' ) .'&url='. esc_url( '#' ), $the_widget_args );
 				endif;
 				?>
 			</div><!--/.row-->

@@ -22,7 +22,7 @@ if( !function_exists( 'Book Me Memories_CallRelatedPostsClass' ) ) {
      */
     function Book Me Memories_CallRelatedPostsClass()
     {
-        $display_related_blog_posts = get_theme_mod('illdy_enable_related_blog_posts', 1);
+        $display_related_blog_posts = get_theme_mod('book-me-memories_enable_related_blog_posts', 1);
 
         if ($display_related_blog_posts == 1) {
 
@@ -50,7 +50,7 @@ if( !class_exists( 'Book Me Memories_Related_Posts_Output' ) ) {
 		 *
 		 */
 		protected function __construct() {
-			add_action( 'illdy_single_after_content', array( $this, 'output_related_posts' ), 3 );
+			add_action( 'book-me-memories_single_after_content', array( $this, 'output_related_posts' ), 3 );
 		}
 
 		/**
@@ -114,14 +114,14 @@ if( !class_exists( 'Book Me Memories_Related_Posts_Output' ) ) {
 					$output .= '<div class="row">';
 						$output .= '<div class="col-sm-12">';
 							$output .= '<div class="related-article-title">';
-								$output .= __( 'Related Articles', 'illdy' );
+								$output .= __( 'Related Articles', 'book-me-memories' );
 							$output .= '</div><!--/.related-article-title-->';
 						$output .= '</div><!--/.col-sm-12-->';
 
 						while( $post_query->have_posts() ) {
 							$post_query->the_post();
 
-							$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'illdy-blog-post-related-articles' );
+							$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'book-me-memories-blog-post-related-articles' );
 
 							$output .= '<div class="col-sm-4">';
 								$output .= '<a href="'. esc_url( get_permalink() ) .'" title="'. esc_attr( get_the_title() ) .'" class="related-post" style="background-image: url('. ( $post_thumbnail ? esc_url( $post_thumbnail[0] ) : '' ) .');">';

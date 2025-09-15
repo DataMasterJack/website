@@ -1,6 +1,6 @@
 <?php
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 
 /***********************************************/
@@ -8,10 +8,10 @@ $prefix = 'illdy';
 /***********************************************/
 $wp_customize->add_section( $prefix . '_contact_us' ,
     array(
-        'title'         => __( 'Contact us Section', 'illdy' ),
-        'description'   => __( 'Control various options for contact us section from front page.', 'illdy' ),
-        'priority'      => illdy_get_section_position($prefix . '_contact_us'),
-        'panel'         => 'illdy_frontpage_panel'
+        'title'         => __( 'Contact us Section', 'book-me-memories' ),
+        'description'   => __( 'Control various options for contact us section from front page.', 'book-me-memories' ),
+        'priority'      => book-me-memories_get_section_position($prefix . '_contact_us'),
+        'panel'         => 'book-me-memories_frontpage_panel'
     )
 );
 
@@ -28,12 +28,12 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
         'priority'  => 1,
         'buttons'   => array(
             array(
-                'name' => __( 'General', 'illdy' ),
-                'fields'    => illdy_create_contact_tab_sections(),
+                'name' => __( 'General', 'book-me-memories' ),
+                'fields'    => book-me-memories_create_contact_tab_sections(),
                 'active' => true
                 ),
             array(
-                'name' => __( 'Details', 'illdy' ),
+                'name' => __( 'Details', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_contact_bar_facebook_url',
                     $prefix . '_contact_bar_twitter_url',
@@ -66,7 +66,7 @@ $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_contact_us_show',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Show this section?', 'illdy' ),
+        'label'     => __( 'Show this section?', 'book-me-memories' ),
         'section'   => $prefix . '_contact_us',
         'priority'  => 1
     ) )
@@ -75,16 +75,16 @@ $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize,
 // Title
 $wp_customize->add_setting( $prefix .'_contact_us_general_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
-        'default'           => __( 'Contact us', 'illdy' ),
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
+        'default'           => __( 'Contact us', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_contact_us_general_title',
     array(
-        'label'         => __( 'Title', 'illdy' ),
-        'description'   => __( 'Add the title for this section.', 'illdy'),
+        'label'         => __( 'Title', 'book-me-memories' ),
+        'description'   => __( 'Add the title for this section.', 'book-me-memories'),
         'section'       => $prefix . '_contact_us',
         'priority'      => 2
     )
@@ -98,7 +98,7 @@ if ( get_theme_mod( $prefix .'_contact_us_entry' ) ) {
     $wp_customize->add_setting( $prefix .'_contact_us_entry',
         array(
             'sanitize_callback' => 'wp_kses_post',
-            'default'           => __( 'And we will get in touch as soon as possible.', 'illdy' ),
+            'default'           => __( 'And we will get in touch as soon as possible.', 'book-me-memories' ),
             'transport'         => 'postMessage'
         )
     );
@@ -106,8 +106,8 @@ if ( get_theme_mod( $prefix .'_contact_us_entry' ) ) {
         $wp_customize,
         $prefix .'_contact_us_entry',
         array(
-            'label'         => __( 'Entry', 'illdy' ),
-            'description'   => __( 'Add the content for this section.', 'illdy'),
+            'label'         => __( 'Entry', 'book-me-memories' ),
+            'description'   => __( 'Add the content for this section.', 'book-me-memories'),
             'section'       => $prefix . '_contact_us',
             'priority'      => 3,
             'type'          => 'textarea'
@@ -127,8 +127,8 @@ if ( get_theme_mod( $prefix .'_contact_us_entry' ) ) {
         new Book Me Memories_Text_Custom_Control(
             $wp_customize, $prefix . '_contact_us_entry',
             array(
-                'label'             => __( 'Install Book Me Memories Companion', 'illdy' ),
-                'description'       => sprintf(__( 'In order to edit description please install <a href="%s" target="_blank">Book Me Memories Companion</a>', 'illdy' ), illdy_get_recommended_actions_url()),
+                'label'             => __( 'Install "Book Me Memories" Companion', 'book-me-memories' ),
+                'description'       => sprintf(__( 'In order to edit description please install <a href="%s" target="_blank">"Book Me Memories" Companion</a>', 'book-me-memories' ), book-me-memories_get_recommended_actions_url()),
                 'section'           => $prefix . '_contact_us',
                 'settings'          => $prefix . '_contact_us_entry',
                 'priority'          => 3,
@@ -144,15 +144,15 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_contact_us_entry', arr
 // Address Title
 $wp_customize->add_setting( $prefix .'_contact_us_general_address_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
-        'default'           => __( 'Address', 'illdy' ),
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
+        'default'           => __( 'Address', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_contact_us_general_address_title',
     array(
-        'label'         => __( 'Address Title', 'illdy' ),
+        'label'         => __( 'Address Title', 'book-me-memories' ),
         'section'       => $prefix . '_contact_us',
         'priority'      => 4
     )
@@ -164,15 +164,15 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_contact_us_general_add
 // Customer Support Title
 $wp_customize->add_setting( $prefix .'_contact_us_general_customer_support_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
-        'default'           => __( 'Customer Support', 'illdy' ),
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
+        'default'           => __( 'Customer Support', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_contact_us_general_customer_support_title',
     array(
-        'label'         => __( 'Customer Support Title', 'illdy' ),
+        'label'         => __( 'Customer Support Title', 'book-me-memories' ),
         'section'       => $prefix . '_contact_us',
         'priority'      => 5
     )
@@ -182,19 +182,19 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_contact_us_general_cus
 ) );
 
 // Contact Form 7
-$wp_customize->add_setting( 'illdy_contact_us_general_contact_form_7',
+$wp_customize->add_setting( 'book-me-memories_contact_us_general_contact_form_7',
     array(
         'sanitize_callback' => 'sanitize_key'
     )
 );
 $wp_customize->add_control( new Book Me Memories_CF7_Custom_Control(
     $wp_customize,
-    'illdy_contact_us_general_contact_form_7',
+    'book-me-memories_contact_us_general_contact_form_7',
         array(
-            'label'             => __( 'Select the contact form you\'d like to display (powered by Contact Form 7)', 'illdy' ),
+            'label'             => __( 'Select the contact form you\'d like to display (powered by Contact Form 7)', 'book-me-memories' ),
             'section'           => $prefix . '_contact_us',
             'priority'          => 6,
-            'type'              => 'illdy_contact_form_7'
+            'type'              => 'book-me-memories_contact_form_7'
         )
     )
 );
@@ -212,12 +212,12 @@ $wp_customize->add_control(
     new Book Me Memories_Text_Custom_Control(
         $wp_customize, $prefix . '_contact_us_install_contact_form_7',
         array(
-            'label'             => __( 'Contact Form Creation', 'illdy' ),
-            'description'       => sprintf( '%s %s %s', __( 'Install', 'illdy' ), '<a href="https://wordpress.org/plugins/contact-form-7/" title="Contact Form 7" target="_blank">Contact Form 7</a>', __( 'and select a contact form to work this setting.', 'illdy' ) ),
+            'label'             => __( 'Contact Form Creation', 'book-me-memories' ),
+            'description'       => sprintf( '%s %s %s', __( 'Install', 'book-me-memories' ), '<a href="https://wordpress.org/plugins/contact-form-7/" title="Contact Form 7" target="_blank">Contact Form 7</a>', __( 'and select a contact form to work this setting.', 'book-me-memories' ) ),
             'section'           => $prefix .'_contact_us',
             'settings'          => $prefix . '_contact_us_install_contact_form_7',
             'priority'          => 7,
-            'active_callback'   => 'illdy_is_not_active_contact_form_7'
+            'active_callback'   => 'book-me-memories_is_not_active_contact_form_7'
         )
     )
 );
@@ -234,12 +234,12 @@ $wp_customize->add_control(
     new Book Me Memories_Text_Custom_Control(
         $wp_customize, $prefix . '_contact_us_create_contact_form_7',
         array(
-            'label'             => __( 'Contact Form Creation', 'illdy' ),
-            'description'       => sprintf( '%s %s', __( 'Create a contact form from ', 'illdy' ), '<a href="'.admin_url('admin.php?page=wpcf7-new').'" title="Contact Form 7" target="_blank">here</a>' ),
+            'label'             => __( 'Contact Form Creation', 'book-me-memories' ),
+            'description'       => sprintf( '%s %s', __( 'Create a contact form from ', 'book-me-memories' ), '<a href="'.admin_url('admin.php?page=wpcf7-new').'" title="Contact Form 7" target="_blank">here</a>' ),
             'section'           => $prefix .'_contact_us',
             'settings'          => $prefix . '_contact_us_create_contact_form_7',
             'priority'          => 7,
-            'active_callback'   => 'illdy_have_not_contact_form_7'
+            'active_callback'   => 'book-me-memories_have_not_contact_form_7'
         )
     )
 );
@@ -251,7 +251,7 @@ $wp_customize->add_control(
 
 
     /* Facebook URL */
-    $wp_customize->add_setting( 'illdy_contact_bar_facebook_url',
+    $wp_customize->add_setting( 'book-me-memories_contact_bar_facebook_url',
         array(
             'sanitize_callback'  => 'esc_url_raw',
             'default'            =>  esc_url_raw('#'),
@@ -259,11 +259,11 @@ $wp_customize->add_control(
         )
     );
 
-    $wp_customize->add_control( 'illdy_contact_bar_facebook_url',
+    $wp_customize->add_control( 'book-me-memories_contact_bar_facebook_url',
         array(
-            'label'          => __( 'Facebook URL', 'illdy' ),
+            'label'          => __( 'Facebook URL', 'book-me-memories' ),
             'section'        => $prefix.'_contact_us',
-            'settings'       => 'illdy_contact_bar_facebook_url',
+            'settings'       => 'book-me-memories_contact_bar_facebook_url',
             'priority'       => 10
         )
     );
@@ -284,7 +284,7 @@ $wp_customize->add_control(
 
     $wp_customize->add_control( $prefix.'_contact_bar_twitter_url',
         array(
-            'label'          => __( 'Twitter URL', 'illdy' ),
+            'label'          => __( 'Twitter URL', 'book-me-memories' ),
             'section'        => $prefix.'_contact_us',
             'settings'       => $prefix.'_contact_bar_twitter_url',
             'priority'       => 10
@@ -302,7 +302,7 @@ $wp_customize->add_control(
 
     $wp_customize->add_control( $prefix.'_contact_bar_linkedin_url',
         array(
-            'label'          => __( 'LinkedIN URL', 'illdy' ),
+            'label'          => __( 'LinkedIN URL', 'book-me-memories' ),
             'section'        => $prefix.'_contact_us',
             'settings'       => $prefix.'_contact_bar_linkedin_url',
             'priority'       => 10
@@ -320,7 +320,7 @@ $wp_customize->add_control(
 
 	$wp_customize->add_control( $prefix.'_contact_bar_googlep_url',
 		array(
-			'label'          => __( 'Google+ URL', 'illdy' ),
+			'label'          => __( 'Google+ URL', 'book-me-memories' ),
 			'section'        => $prefix.'_contact_us',
 			'settings'       => $prefix.'_contact_bar_googlep_url',
 			'priority'       => 10
@@ -338,7 +338,7 @@ $wp_customize->add_control(
 
 	$wp_customize->add_control( $prefix.'_contact_bar_pinterest_url',
 		array(
-			'label'          => __( 'Pinterest URL', 'illdy' ),
+			'label'          => __( 'Pinterest URL', 'book-me-memories' ),
 			'section'        => $prefix.'_contact_us',
 			'settings'       => $prefix.'_contact_bar_pinterest_url',
 			'priority'       => 10
@@ -356,7 +356,7 @@ $wp_customize->add_control(
 
 	$wp_customize->add_control( $prefix.'_contact_bar_instagram_url',
 		array(
-			'label'          => __( 'Instagram URL', 'illdy' ),
+			'label'          => __( 'Instagram URL', 'book-me-memories' ),
 			'section'        => $prefix.'_contact_us',
 			'settings'       => $prefix.'_contact_bar_instagram_url',
 			'priority'       => 10
@@ -374,7 +374,7 @@ $wp_customize->add_control(
 
 	$wp_customize->add_control( $prefix.'_contact_bar_youtube_url',
 		array(
-			'label'          => __( 'YouTube URL', 'illdy' ),
+			'label'          => __( 'YouTube URL', 'book-me-memories' ),
 			'section'        => $prefix.'_contact_us',
 			'settings'       => $prefix.'_contact_bar_youtube_url',
 			'priority'       => 10
@@ -392,7 +392,7 @@ $wp_customize->add_control(
 
 	$wp_customize->add_control( $prefix.'_contact_bar_vimeo_url',
 		array(
-			'label'          => __( 'Vimeo URL', 'illdy' ),
+			'label'          => __( 'Vimeo URL', 'book-me-memories' ),
 			'section'        => $prefix.'_contact_us',
 			'settings'       => $prefix.'_contact_bar_vimeo_url',
 			'priority'       => 10
@@ -405,14 +405,14 @@ $wp_customize->add_control(
     $wp_customize->add_setting( $prefix.'_email',
         array(
             'sanitize_callback'  => 'sanitize_text_field',
-            'default'            => __( 'contact@site.com', 'illdy' ),
+            'default'            => __( 'contact@site.com', 'book-me-memories' ),
             'transport'          => 'postMessage'
         )
     );
 
     $wp_customize->add_control( $prefix.'_email',
         array(
-            'label'         => __( 'Email addr.', 'illdy' ),
+            'label'         => __( 'Email addr.', 'book-me-memories' ),
             'section'       => $prefix.'_contact_us',
             'settings'      => $prefix.'_email',
             'priority'      => 10
@@ -427,15 +427,15 @@ $wp_customize->add_control(
     /* phone number */
     $wp_customize->add_setting( $prefix.'_phone',
         array(
-            'sanitize_callback'  => 'illdy_sanitize_html',
-            'default'            => __( '(555) 555-5555', 'illdy' ),
+            'sanitize_callback'  => 'book-me-memories_sanitize_html',
+            'default'            => __( '(555) 555-5555', 'book-me-memories' ),
             'transport'          => 'postMessage'
         )
     );
 
     $wp_customize->add_control( $prefix.'_phone',
         array(
-            'label'         => __( 'Phone number', 'illdy' ),
+            'label'         => __( 'Phone number', 'book-me-memories' ),
             'section'       => $prefix.'_contact_us',
             'settings'      => $prefix.'_phone',
             'priority'      => 12
@@ -449,8 +449,8 @@ $wp_customize->add_control(
     $wp_customize->add_setting(
         $prefix . '_address1',
         array(
-            'sanitize_callback'  => 'illdy_sanitize_html',
-            'default'            => __( 'Street 221B Baker Street, ', 'illdy' ),
+            'sanitize_callback'  => 'book-me-memories_sanitize_html',
+            'default'            => __( 'Street 221B Baker Street, ', 'book-me-memories' ),
             'transport'          => 'postMessage'
         )
     );
@@ -458,7 +458,7 @@ $wp_customize->add_control(
     $wp_customize->add_control(
         $prefix . '_address1',
         array(
-            'label'         => __( 'Address 1', 'illdy' ),
+            'label'         => __( 'Address 1', 'book-me-memories' ),
             'section'       => $prefix . '_contact_us',
             'priority'      => 13
         )
@@ -471,8 +471,8 @@ $wp_customize->add_control(
     $wp_customize->add_setting(
         $prefix . '_address2',
         array(
-            'sanitize_callback'  => 'illdy_sanitize_html',
-            'default'            => __( 'London, UK', 'illdy' ),
+            'sanitize_callback'  => 'book-me-memories_sanitize_html',
+            'default'            => __( 'London, UK', 'book-me-memories' ),
             'transport'          => 'postMessage'
         )
     );
@@ -480,7 +480,7 @@ $wp_customize->add_control(
     $wp_customize->add_control(
         $prefix . '_address2',
         array(
-            'label'         => __( 'Address 2', 'illdy' ),
+            'label'         => __( 'Address 2', 'book-me-memories' ),
             'section'       => $prefix . '_contact_us',
             'priority'      => 13
         )

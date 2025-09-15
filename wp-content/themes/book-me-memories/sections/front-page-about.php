@@ -3,16 +3,16 @@
  *	The template for displaying about section in front page.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php
 if ( current_user_can( 'edit_theme_options' ) ) {
-	$general_title = get_theme_mod( 'illdy_about_general_title', __( 'About', 'illdy' ) );
-	$general_entry = get_theme_mod( 'illdy_about_general_entry', __( 'It is an amazng one-page theme with great features that offers an incredible experience. It is easy to install, make changes, adapt for your business. A modern design with clean lines and styling for a wide variety of content, exactly how a business design should be. You can add as many images as you want to the main header area and turn them into slider.', 'illdy' ) );
+	$general_title = get_theme_mod( 'book-me-memories_about_general_title', __( 'About', 'book-me-memories' ) );
+	$general_entry = get_theme_mod( 'book-me-memories_about_general_entry', __( 'It is an amazng one-page theme with great features that offers an incredible experience. It is easy to install, make changes, adapt for your business. A modern design with clean lines and styling for a wide variety of content, exactly how a business design should be. You can add as many images as you want to the main header area and turn them into slider.', 'book-me-memories' ) );
 }else{
-	$general_title = get_theme_mod( 'illdy_about_general_title' );
-	$general_entry = get_theme_mod( 'illdy_about_general_entry' );
+	$general_title = get_theme_mod( 'book-me-memories_about_general_title' );
+	$general_entry = get_theme_mod( 'book-me-memories_about_general_entry' );
 }
 ?>
 
@@ -45,15 +45,15 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 					dynamic_sidebar( 'front-page-about-sidebar' );
 				elseif( current_user_can( 'edit_theme_options' ) & defined("ILLDY_COMPANION") ):
 					$the_widget_args = array(
-						'before_widget'	=> '<div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0 widget_illdy_skill">',
+						'before_widget'	=> '<div class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0 widget_book-me-memories_skill">',
 						'after_widget'	=> '</div>',
 						'before_title'	=> '',
 						'after_title'	=> ''
 					);
 
-					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Typography', 'illdy' ) .'&percentage=60&icon=fa-font&color=#f18b6d', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Design', 'illdy' ) .'&percentage=82&icon=fa-pencil&color=#f1d204', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Development', 'illdy' ) .'&percentage=86&icon=fa-code&color=#6a4d8a', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Typography', 'book-me-memories' ) .'&percentage=60&icon=fa-font&color=#f18b6d', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Design', 'book-me-memories' ) .'&percentage=82&icon=fa-pencil&color=#f1d204', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Skill', 'title='. __( 'Development', 'book-me-memories' ) .'&percentage=86&icon=fa-code&color=#6a4d8a', $the_widget_args );
 				endif;
 				?>
 			</div><!--/.row-->

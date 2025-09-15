@@ -22,7 +22,7 @@ if( !class_exists( 'Book Me Memories_CF7_Custom_Control' ) ) {
             }
         }
 
-        public function illdy_get_cf7_forms() {
+        public function book-me-memories_get_cf7_forms() {
             global $wpdb;
 
             // no more php warnings
@@ -37,19 +37,19 @@ if( !class_exists( 'Book Me Memories_CF7_Custom_Control' ) ) {
                         $contact_forms[$cform->ID] = $cform->post_title;
                     }
                 } else {
-                    $contact_forms[0] = __('No contact forms found', 'illdy');
+                    $contact_forms[0] = __('No contact forms found', 'book-me-memories');
                 }
             }
             return $contact_forms;
         }
 
         public function render_content() {
-            $Pixova_Lite_contact_forms = $this->illdy_get_cf7_forms();
+            $Pixova_Lite_contact_forms = $this->book-me-memories_get_cf7_forms();
 
             if ( !empty($Pixova_Lite_contact_forms ) ) { ?>
                 <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
                 <select <?php esc_url($this->link()); ?> style="width:100%;">
-                <?php echo '<option value="default">'.__('Select your contact form', 'illdy').'</option>';
+                <?php echo '<option value="default">'.__('Select your contact form', 'book-me-memories').'</option>';
                 foreach ($Pixova_Lite_contact_forms as $form_id => $form_title) {
                     echo '<option value="' . sanitize_key( $form_id ). '" >' . esc_html( $form_title ). '</option>';
                 }

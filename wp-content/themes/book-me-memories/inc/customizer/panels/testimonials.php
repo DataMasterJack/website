@@ -1,6 +1,6 @@
 <?php
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 $panel_id = $prefix . '_testimonials_general';
 
 /***********************************************/
@@ -8,10 +8,10 @@ $panel_id = $prefix . '_testimonials_general';
 /***********************************************/
 $wp_customize->add_section( $prefix . '_testimonials_general' ,
     array(
-        'title'         => __( 'Testimonials Section', 'illdy' ),
-        'description'   => __( 'Control various options for testimonials section from front page.', 'illdy' ),
-        'priority'      => illdy_get_section_position($prefix . '_testimonials_general'),
-        'panel'     => 'illdy_frontpage_panel',
+        'title'         => __( 'Testimonials Section', 'book-me-memories' ),
+        'description'   => __( 'Control various options for testimonials section from front page.', 'book-me-memories' ),
+        'priority'      => book-me-memories_get_section_position($prefix . '_testimonials_general'),
+        'panel'     => 'book-me-memories_frontpage_panel',
     )
 );
 
@@ -27,7 +27,7 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
     $prefix . '_testimonials_general_show',
     array(
         'type'      => 'mte-toggle',
-        'label'     => __( 'Show this section?', 'illdy' ),
+        'label'     => __( 'Show this section?', 'book-me-memories' ),
         'section'   => $prefix . '_testimonials_general',
         'priority'  => 1,
     ))
@@ -36,16 +36,16 @@ $wp_customize->add_control( new Epsilon_Control_Toggle( $wp_customize,
 // Title
 $wp_customize->add_setting( $prefix .'_testimonials_general_title',
     array(
-        'sanitize_callback' => 'illdy_sanitize_html',
-        'default'           => __( 'Testimonials', 'illdy' ),
+        'sanitize_callback' => 'book-me-memories_sanitize_html',
+        'default'           => __( 'Testimonials', 'book-me-memories' ),
         'transport'         => 'postMessage'
     )
 );
 $wp_customize->add_control(
     $prefix .'_testimonials_general_title',
     array(
-        'label'             => __( 'Title', 'illdy' ),
-        'description'       => __( 'Add the title for this section.', 'illdy'),
+        'label'             => __( 'Title', 'book-me-memories' ),
+        'description'       => __( 'Add the title for this section.', 'book-me-memories'),
         'section'           => $prefix . '_testimonials_general',
         'priority'          => 2,
     )
@@ -65,7 +65,7 @@ $wp_customize->add_control(
         $wp_customize,
         $prefix .'_testimonial_widget_button',
         array(
-            'text'         => __( 'Add & Edit Testimonials', 'illdy' ),
+            'text'         => __( 'Add & Edit Testimonials', 'book-me-memories' ),
             'section_id'    => 'sidebar-widgets-front-page-testimonials-sidebar',
             'icon'          => 'dashicons-plus',
             'section'       => $panel_id,
@@ -87,7 +87,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
         'section'   => $panel_id,
         'buttons'   => array(
             array(
-                'name' => __( 'Colors', 'illdy' ),
+                'name' => __( 'Colors', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_testimonials_title_color',
                     $prefix . '_testimonials_dots_color',
@@ -99,7 +99,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
                 'active' => true
                 ),
             array(
-                'name' => __( 'Backgrounds', 'illdy' ),
+                'name' => __( 'Backgrounds', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_testimonials_general_background_image',
                     $prefix . '_testimonials_background_size',
@@ -119,7 +119,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_general_background_image', 
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $prefix . '_testimonials_general_background_image', array(
-    'label'    => __( 'Background Image', 'illdy' ),
+    'label'    => __( 'Background Image', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_general_background_image',
 ) ) );
@@ -134,7 +134,7 @@ $wp_customize->add_setting( $prefix.'_testimonials_background_position_y', array
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_customize, $prefix.'_testimonials_background_position', array(
-    'label'    => __( 'Background Position', 'illdy' ),
+    'label'    => __( 'Background Position', 'book-me-memories' ),
     'section'  => $prefix . '_testimonials_general',
     'settings' => array(
         'x' => $prefix.'_testimonials_background_position_x',
@@ -143,17 +143,17 @@ $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_cu
 ) ) );
 $wp_customize->add_setting( $prefix . '_testimonials_background_size', array(
     'default' => 'cover',
-    'sanitize_callback' => 'illdy_sanitize_background_size',
+    'sanitize_callback' => 'book-me-memories_sanitize_background_size',
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_testimonials_background_size', array(
-    'label'      => __( 'Image Size', 'illdy' ),
+    'label'      => __( 'Image Size', 'book-me-memories' ),
     'section'    => $panel_id,
     'type'       => 'select',
     'choices'    => array(
-        'auto'    => __( 'Original', 'illdy' ),
-        'contain' => __( 'Fit to Screen', 'illdy' ),
-        'cover'   => __( 'Fill Screen', 'illdy' ),
+        'auto'    => __( 'Original', 'book-me-memories' ),
+        'contain' => __( 'Fit to Screen', 'book-me-memories' ),
+        'cover'   => __( 'Fill Screen', 'book-me-memories' ),
     ),
 ) );
 
@@ -165,7 +165,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_background_repeat', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_testimonials_background_repeat', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Repeat Background Image', 'illdy' ),
+    'label'       => __( 'Repeat Background Image', 'book-me-memories' ),
     'section'     => $panel_id,
 ) ) );
 
@@ -177,7 +177,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_background_attachment', arr
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_testimonials_background_attachment', array(
     'type'        => 'mte-toggle',
-    'label'       => __( 'Scroll with Page', 'illdy' ),
+    'label'       => __( 'Scroll with Page', 'book-me-memories' ),
     'section'     => $panel_id,
 ) ) );
 
@@ -188,7 +188,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_general_color', array(
 
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_general_color', array(
-    'label'    => __( 'Background Color', 'illdy' ),
+    'label'    => __( 'Background Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_general_color',
 ) ) );
@@ -199,7 +199,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_title_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_title_color', array(
-    'label'    => __( 'Title Color', 'illdy' ),
+    'label'    => __( 'Title Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_title_color',
 ) ) );
@@ -210,7 +210,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_container_background_color'
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_container_background_color', array(
-    'label'    => __( 'Testimonial Container Color', 'illdy' ),
+    'label'    => __( 'Testimonial Container Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_container_background_color',
 ) ) );
@@ -221,7 +221,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_text_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_text_color', array(
-    'label'    => __( 'Testimonial Content Color', 'illdy' ),
+    'label'    => __( 'Testimonial Content Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_text_color',
 ) ) );
@@ -232,7 +232,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_author_text_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_author_text_color', array(
-    'label'    => __( 'Testimonial Author Text Color', 'illdy' ),
+    'label'    => __( 'Testimonial Author Text Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_author_text_color',
 ) ) );
@@ -243,7 +243,7 @@ $wp_customize->add_setting( $prefix . '_testimonials_dots_color', array(
     'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_testimonials_dots_color', array(
-    'label'    => __( 'Testimonial Dots Color', 'illdy' ),
+    'label'    => __( 'Testimonial Dots Color', 'book-me-memories' ),
     'section'  => $panel_id,
     'settings' => $prefix . '_testimonials_dots_color',
 ) ) );

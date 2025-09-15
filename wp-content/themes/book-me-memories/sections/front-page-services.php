@@ -3,16 +3,16 @@
  *	The template for displaying services section in front page.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php
 if ( current_user_can( 'edit_theme_options' ) ) {
-	$services_general_title = get_theme_mod( 'illdy_services_general_title', __( 'Services', 'illdy' ) );
-	$services_general_entry = get_theme_mod( 'illdy_services_general_entry', __( 'In order to help you grow your business, our carefully selected experts can advise you in in the following areas:', 'illdy' ) );
+	$services_general_title = get_theme_mod( 'book-me-memories_services_general_title', __( 'Services', 'book-me-memories' ) );
+	$services_general_entry = get_theme_mod( 'book-me-memories_services_general_entry', __( 'In order to help you grow your business, our carefully selected experts can advise you in in the following areas:', 'book-me-memories' ) );
 }else{
-	$services_general_title = get_theme_mod( 'illdy_services_general_title' );
-	$services_general_entry = get_theme_mod( 'illdy_services_general_entry' );
+	$services_general_title = get_theme_mod( 'book-me-memories_services_general_title' );
+	$services_general_entry = get_theme_mod( 'book-me-memories_services_general_entry' );
 }
 
 ?>
@@ -46,15 +46,15 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 					dynamic_sidebar( 'front-page-services-sidebar' );
 				elseif( current_user_can( 'edit_theme_options' ) & defined("ILLDY_COMPANION") ):
 					$the_widget_args = array(
-						'before_widget'	=> '<div class="col-sm-4 widget_illdy_service">',
+						'before_widget'	=> '<div class="col-sm-4 widget_book-me-memories_service">',
 						'after_widget'	=> '</div>',
 						'before_title'	=> '',
 						'after_title'	=> ''
 					);
 
-					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'Web Design', 'illdy' ) .'&icon=fa-pencil&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'illdy' ) .'&color=#f18b6d', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'Web Development', 'illdy' ) .'&icon=fa-code&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'illdy' ) .'&color=#f1d204', $the_widget_args );
-					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'SEO Analisys', 'illdy' ) .'&icon=fa-search&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'illdy' ) .'&color=#6a4d8a', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'Web Design', 'book-me-memories' ) .'&icon=fa-pencil&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'book-me-memories' ) .'&color=#f18b6d', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'Web Development', 'book-me-memories' ) .'&icon=fa-code&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'book-me-memories' ) .'&color=#f1d204', $the_widget_args );
+					the_widget( 'Book Me Memories_Widget_Service', 'title='. __( 'SEO Analisys', 'book-me-memories' ) .'&icon=fa-search&entry='. __( 'Consectetur adipiscing elit. Praesent molestie urna hendrerit erat tincidunt tempus. Aliquam a leo risus. Fusce a metus non augue dapibus porttitor at in mauris. Pellentesque commodo...', 'book-me-memories' ) .'&color=#6a4d8a', $the_widget_args );
 				endif;
 				?>
 			</div><!--/.row-->

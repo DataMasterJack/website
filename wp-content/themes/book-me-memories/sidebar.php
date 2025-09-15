@@ -3,7 +3,7 @@
  *	The template for dispalying the sidebar.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <div class="col-sm-4">
@@ -19,8 +19,8 @@
 				'after_title'	=> '</h3></div>'
 			);
 
-			the_widget( 'WP_Widget_Categories', 'title=' . __( 'Categories', 'illdy' ), $the_widget_args );
-			the_widget( 'WP_Widget_Archives', 'title=' . __( 'Archive', 'illdy' ), $the_widget_args );
+			the_widget( 'WP_Widget_Categories', 'title=' . __( 'Categories', 'book-me-memories' ), $the_widget_args );
+			the_widget( 'WP_Widget_Archives', 'title=' . __( 'Archive', 'book-me-memories' ), $the_widget_args );
 		endif;
 		?>
 	</div><!--/#sidebar-->

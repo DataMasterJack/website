@@ -14,22 +14,22 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 <div class="feature-section action-required demo-import-boxed" id="plugin-filter">
 
 	<?php
-	global $illdy_required_actions, $illdy_recommended_plugins;
+	global $book-me-memories_required_actions, $book-me-memories_recommended_plugins;
 
-	if ( ! empty( $illdy_required_actions ) ):
+	if ( ! empty( $book-me-memories_required_actions ) ):
 
-		/* illdy_show_required_actions is an array of true/false for each required action that was dismissed */
-		$illdy_show_required_actions = get_option( "illdy_show_required_actions" );
+		/* book-me-memories_show_required_actions is an array of true/false for each required action that was dismissed */
+		$book-me-memories_show_required_actions = get_option( "book-me-memories_show_required_actions" );
 		$hooray = true;
 
 		$nr_actions_required = 0;
 		$nr_action_dismissed = 0;
-		foreach ( $illdy_required_actions as $illdy_required_action_key => $illdy_required_action_value ):
+		foreach ( $book-me-memories_required_actions as $book-me-memories_required_action_key => $book-me-memories_required_action_value ):
 			$hidden = false;
-			if ( @$illdy_show_required_actions[ $illdy_required_action_value['id'] ] === false ) {
+			if ( @$book-me-memories_show_required_actions[ $book-me-memories_required_action_value['id'] ] === false ) {
 				$hidden = true;
 			}
-			if ( @$illdy_required_action_value['check'] ) {
+			if ( @$book-me-memories_required_action_value['check'] ) {
 				continue;
 			}
 
@@ -38,54 +38,54 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 				$nr_action_dismissed ++;
 			}
 			?>
-			<div class="illdy-action-required-box">
+			<div class="book-me-memories-action-required-box">
 				<?php if ( ! $hidden ): ?>
-					<span data-action="dismiss" class="dashicons dashicons-visibility illdy-required-action-button"
-					      id="<?php echo $illdy_required_action_value['id']; ?>"></span>
+					<span data-action="dismiss" class="dashicons dashicons-visibility book-me-memories-required-action-button"
+					      id="<?php echo $book-me-memories_required_action_value['id']; ?>"></span>
 				<?php else: ?>
-					<span data-action="add" class="dashicons dashicons-hidden illdy-required-action-button" id="<?php echo $illdy_required_action_value['id']; ?>"></span>
+					<span data-action="add" class="dashicons dashicons-hidden book-me-memories-required-action-button" id="<?php echo $book-me-memories_required_action_value['id']; ?>"></span>
 				<?php endif; ?>
-				<h3><?php if ( ! empty( $illdy_required_action_value['title'] ) ): echo $illdy_required_action_value['title']; endif; ?></h3>
+				<h3><?php if ( ! empty( $book-me-memories_required_action_value['title'] ) ): echo $book-me-memories_required_action_value['title']; endif; ?></h3>
 				<p>
-					<?php if ( ! empty( $illdy_required_action_value['description'] ) ): echo $illdy_required_action_value['description']; endif; ?>
-					<?php if ( ! empty( $illdy_required_action_value['help'] ) ): echo '<br/>' . $illdy_required_action_value['help']; endif; ?>
+					<?php if ( ! empty( $book-me-memories_required_action_value['description'] ) ): echo $book-me-memories_required_action_value['description']; endif; ?>
+					<?php if ( ! empty( $book-me-memories_required_action_value['help'] ) ): echo '<br/>' . $book-me-memories_required_action_value['help']; endif; ?>
 				</p>
 				<?php
-				if ( ! empty( $illdy_required_action_value['plugin_slug'] ) ) {
-					$active = $this->check_active( $illdy_required_action_value['plugin_slug'] );
+				if ( ! empty( $book-me-memories_required_action_value['plugin_slug'] ) ) {
+					$active = $this->check_active( $book-me-memories_required_action_value['plugin_slug'] );
 					if ( !isset($active['plugin_path']) ) {
 						$active['plugin_path'] = '';
 					}
 
-					if ( $active['needs'] == 'deactivate' && !MT_Notify_System::check_plugin_update( $illdy_required_action_value['plugin_slug'] ) ) {
+					if ( $active['needs'] == 'deactivate' && !MT_Notify_System::check_plugin_update( $book-me-memories_required_action_value['plugin_slug'] ) ) {
 						$active['needs'] = 'update';
 					}
 
-					$url    = $this->create_action_link( $active['needs'], $illdy_required_action_value['plugin_slug'], $active['plugin_path'] );
+					$url    = $this->create_action_link( $active['needs'], $book-me-memories_required_action_value['plugin_slug'], $active['plugin_path'] );
 					$label  = '';
 
 					switch ( $active['needs'] ) {
 						case 'install':
 							$class = 'install-now button';
-							$label = __( 'Install', 'illdy' );
+							$label = __( 'Install', 'book-me-memories' );
 							break;
 						case 'activate':
 							$class = 'activate-now button button-primary';
-							$label = __( 'Activate', 'illdy' );
+							$label = __( 'Activate', 'book-me-memories' );
 							break;
 						case 'update':
 							$class = 'update-now button button-primary';
-							$label = __( 'Update', 'illdy' );
+							$label = __( 'Update', 'book-me-memories' );
 							break;
 						case 'deactivate':
 							$class = 'deactivate-now button';
-							$label = __( 'Deactivate', 'illdy' );
+							$label = __( 'Deactivate', 'book-me-memories' );
 							break;
 					}
 
 					?>
-					<p class="plugin-card-<?php echo esc_attr( $illdy_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ?>">
-						<a data-slug="<?php echo esc_attr( $illdy_required_action_value['plugin_slug'] ) ?>"
+					<p class="plugin-card-<?php echo esc_attr( $book-me-memories_required_action_value['plugin_slug'] ) ?> action_button <?php echo ( $active['needs'] !== 'install' && $active['status'] ) ? 'active' : '' ?>">
+						<a data-slug="<?php echo esc_attr( $book-me-memories_required_action_value['plugin_slug'] ) ?>"
 							data-plugin = "<?php echo esc_attr( $active['plugin_path'] ) ?>"
 						   class="<?php echo $class; ?>"
 						   href="<?php echo esc_url( $url ) ?>"> <?php echo $label ?> </a>
@@ -102,8 +102,8 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 	$nr_recommended_plugins = 0;
 	if ( $nr_actions_required == 0 || $nr_actions_required == $nr_action_dismissed ):
 
-		$illdy_show_recommended_plugins = get_option( "illdy_show_recommended_plugins" );
-		foreach ( $illdy_recommended_plugins as $slug => $plugin_opt ) {
+		$book-me-memories_show_recommended_plugins = get_option( "book-me-memories_show_recommended_plugins" );
+		foreach ( $book-me-memories_recommended_plugins as $slug => $plugin_opt ) {
 			
 			if ( !$plugin_opt['recommended'] ) {
 				continue;
@@ -113,17 +113,17 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 				continue;
 			}
 			if ( $nr_recommended_plugins == 0 ) {
-				echo '<h3 class="hooray">' . __( 'Hooray! There are no required actions for you right now. But you can make your theme more powerful with next actions: ', 'illdy' ) . '</h3>';
+				echo '<h3 class="hooray">' . __( 'Hooray! There are no required actions for you right now. But you can make your theme more powerful with next actions: ', 'book-me-memories' ) . '</h3>';
 			}
 
 			$nr_recommended_plugins ++;
-			echo '<div class="illdy-action-required-box">';
+			echo '<div class="book-me-memories-action-required-box">';
 
-			if ( isset($illdy_show_recommended_plugins[$slug]) && $illdy_show_recommended_plugins[$slug] ): ?>
-				<span data-action="add" class="dashicons dashicons-hidden illdy-recommended-plugin-button"
+			if ( isset($book-me-memories_show_recommended_plugins[$slug]) && $book-me-memories_show_recommended_plugins[$slug] ): ?>
+				<span data-action="add" class="dashicons dashicons-hidden book-me-memories-recommended-plugin-button"
 				      id="<?php echo esc_attr( $slug ); ?>"></span>
 			<?php else: ?>
-				<span data-action="dismiss" class="dashicons dashicons-visibility illdy-recommended-plugin-button"
+				<span data-action="dismiss" class="dashicons dashicons-visibility book-me-memories-recommended-plugin-button"
 				      id="<?php echo esc_attr( $slug ); ?>"></span>
 			<?php endif;
 
@@ -135,15 +135,15 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 			switch ( $active['needs'] ) {
 				case 'install':
 					$class = 'install-now button';
-					$label = __( 'Install', 'illdy' );
+					$label = __( 'Install', 'book-me-memories' );
 					break;
 				case 'activate':
 					$class = 'activate-now button button-primary';
-					$label = __( 'Activate', 'illdy' );
+					$label = __( 'Activate', 'book-me-memories' );
 					break;
 				case 'deactivate':
 					$class = 'deactivate-now button';
-					$label = __( 'Deactivate', 'illdy' );
+					$label = __( 'Deactivate', 'book-me-memories' );
 					break;
 			}
 			?>
@@ -165,7 +165,7 @@ wp_localize_script( 'updates', '_wpUpdatesItemCounts', array(
 	endif;
 
 	if ( $hooray && $nr_recommended_plugins == 0 ):
-		echo '<span class="hooray">' . __( 'Hooray! There are no required actions for you right now.', 'illdy' ) . '</span>';
+		echo '<span class="hooray">' . __( 'Hooray! There are no required actions for you right now.', 'book-me-memories' ) . '</span>';
 	endif;
 	?>
 

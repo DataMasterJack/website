@@ -3,7 +3,7 @@
  *    The template for dispalying the bottom header section in blog.
  *
  * @package    WordPress
- * @subpackage illdy
+ * @subpackage book-me-memories
  *             * @TODO: https://developer.wordpress.org/reference/functions/get_the_archive_title/
  */
 ?>
@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="row">
 			<?php if ( is_404() ) { ?>
-				<h1><?php _e( 'Page not found', 'illdy' ) ?></h1>			 
+				<h1><?php _e( 'Page not found', 'book-me-memories' ) ?></h1>			 
 			<?php }elseif ( is_page_template( 'page-templates/blog.php' ) || is_singular() ){ ?>
 				<div class="col-sm-12">
 					<?php

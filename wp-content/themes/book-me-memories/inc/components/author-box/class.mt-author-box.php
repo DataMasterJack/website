@@ -21,7 +21,7 @@ if( !function_exists( 'Book Me Memories_CallAuthorBoxClass' ) ) {
      */
     function Book Me Memories_CallAuthorBoxClass()
     {
-        $display_author_box = get_theme_mod( 'illdy_enable_author_box_blog_posts', 1 );
+        $display_author_box = get_theme_mod( 'book-me-memories_enable_author_box_blog_posts', 1 );
 
         if ( $display_author_box == 1 ) {
             // instantiate the class & load everything else
@@ -47,7 +47,7 @@ if( !class_exists( 'Book Me Memories_Author_Box_Output' ) ) {
          *
          */
         protected function __construct() {
-            add_action( 'illdy_single_after_content', array( $this, 'output_author_box' ), 3 );
+            add_action( 'book-me-memories_single_after_content', array( $this, 'output_author_box' ), 3 );
         }
 
         /**

@@ -3,7 +3,7 @@
  *	The template for displaying WooCommerce.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php get_header(); ?>
@@ -31,8 +31,8 @@
 						'after_title'	=> '</h3></div>'
 					);
 
-					the_widget( 'WC_Widget_Cart', 'title=' . __( 'WooCommerce Title', 'illdy' ), $the_widget_title );
-					the_widget( 'WC_Widget_Product_Categories', 'title=' . __( 'Product Categories', 'illdy' ), $the_widget_title );
+					the_widget( 'WC_Widget_Cart', 'title=' . __( 'WooCommerce Title', 'book-me-memories' ), $the_widget_title );
+					the_widget( 'WC_Widget_Product_Categories', 'title=' . __( 'Product Categories', 'book-me-memories' ), $the_widget_title );
 					?>
 				</div><!--/#sidebar-->
 			</div><!--/.col-sm-4-->

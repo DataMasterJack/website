@@ -3,31 +3,31 @@
  *    The template for displaying the single content.
  *
  * @package    WordPress
- * @subpackage illdy
+ * @subpackage book-me-memories
  */
 
-$jumbotron_single_image  = get_theme_mod( 'illdy_jumbotron_enable_featured_image', true );
+$jumbotron_single_image  = get_theme_mod( 'book-me-memories_jumbotron_enable_featured_image', true );
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'blog-post' ); ?>>
 	<?php if ( has_post_thumbnail() && $jumbotron_single_image != true ) { ?>
 		<div class="blog-post-image">
-			<?php the_post_thumbnail( 'illdy-blog-list' ); ?>
+			<?php the_post_thumbnail( 'book-me-memories-blog-list' ); ?>
 		</div><!--/.blog-post-image-->
 	<?php } ?>
 
-	<?php do_action( 'illdy_single_entry_meta' ); ?>
+	<?php do_action( 'book-me-memories_single_entry_meta' ); ?>
 	<div class="blog-post-entry markup-format">
 		<?php
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="link-pages">' . __( 'Pages:', 'illdy' ),
+			'before' => '<div class="link-pages">' . __( 'Pages:', 'book-me-memories' ),
 			'after'  => '</div><!--/.link-pages-->',
 		) );
 		?>
 	</div><!--/.blog-post-entry.markup-format-->
-	<?php do_action( 'illdy_single_after_content' ); ?>
+	<?php do_action( 'book-me-memories_single_after_content' ); ?>
 	<?php
 	if ( comments_open() || get_comments_number() ) :
 		comments_template();

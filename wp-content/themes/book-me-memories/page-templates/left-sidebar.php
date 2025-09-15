@@ -5,7 +5,7 @@
  *	The template for displaying Custom Page Template: Left Sidebar.
  *
  *	@package WordPress
- *	@subpackage illdy
+ *	@subpackage book-me-memories
  */
 ?>
 <?php get_header(); ?>

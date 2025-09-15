@@ -1,16 +1,16 @@
 <?php
 // Set prefix
-$prefix = 'illdy';
+$prefix = 'book-me-memories';
 
 
 /***********************************************/
 /******************* General *******************/
 /***********************************************/
 $wp_customize->add_section( $prefix . '_jumbotron_general', array(
-	'title'       => __( 'Jumbotron Section', 'illdy' ),
-	'description' => __( 'Control various jumbotron related settings. Will only be displayed if a <strong>custom front-page is set in Settings -> Reading.</strong>', 'illdy' ),
+	'title'       => __( 'Jumbotron Section', 'book-me-memories' ),
+	'description' => __( 'Control various jumbotron related settings. Will only be displayed if a <strong>custom front-page is set in Settings -> Reading.</strong>', 'book-me-memories' ),
 	'priority'    => 10,
-	'panel'       => 'illdy_frontpage_panel'
+	'panel'       => 'book-me-memories_frontpage_panel'
 ) );
 
 
@@ -24,8 +24,8 @@ $wp_customize->add_setting( $prefix . '_jumbotron_enable_featured_image', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_jumbotron_enable_featured_image', array(
 	'type'        => 'mte-toggle',
-	'label'       => __( 'Featured image as jumbotron ?', 'illdy' ),
-	'description' => __( 'This will remove the featured image from inside the post content and use it in the jumbotron as a background image. Works for single posts & pages.', 'illdy' ),
+	'label'       => __( 'Featured image as jumbotron ?', 'book-me-memories' ),
+	'description' => __( 'This will remove the featured image from inside the post content and use it in the jumbotron as a background image. Works for single posts & pages.', 'book-me-memories' ),
 	'section'     => $prefix . '_jumbotron_general',
 ) ) );
 
@@ -38,20 +38,20 @@ $wp_customize->add_setting( $prefix . '_jumbotron_enable_parallax_effect', array
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_jumbotron_enable_parallax_effect', array(
 	'type'        => 'mte-toggle',
-	'label'       => __( 'Enable parallax effect ?', 'illdy' ),
-	'description' => __( 'Enabling this will add a parallax scrolling effect for the header image.', 'illdy' ),
+	'label'       => __( 'Enable parallax effect ?', 'book-me-memories' ),
+	'description' => __( 'Enabling this will add a parallax scrolling effect for the header image.', 'book-me-memories' ),
 	'section'     => $prefix . '_jumbotron_general',
 ) ) );
 
 $wp_customize->add_setting( $prefix . '_jumbotron_title', array(
 	'sanitize_callback' => 'wp_kses_post',
-	'default'           => __( 'Clean <span class="span-dot">.</span> Slick<span class="span-dot">.</span> Pixel Perfect', 'illdy' ),
+	'default'           => __( 'Clean <span class="span-dot">.</span> Slick<span class="span-dot">.</span> Pixel Perfect', 'book-me-memories' ),
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
     $wp_customize, $prefix . '_jumbotron_title', array(
-	'label'       => __( 'Title', 'illdy' ),
-	'description' => __( 'Add the title for this section.', 'illdy' ),
+	'label'       => __( 'Title', 'book-me-memories' ),
+	'description' => __( 'Add the title for this section.', 'book-me-memories' ),
 	'section'     => $prefix . '_jumbotron_general',
 ) ) );
 $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_title', array(
@@ -64,13 +64,13 @@ if ( get_theme_mod( $prefix . '_jumbotron_general_entry' ) ) {
 
 	$wp_customize->add_setting( $prefix . '_jumbotron_general_entry', array(
 		'sanitize_callback' => 'wp_kses_post',
-		'default'           => __( 'lldy is a great one-page theme, perfect for developers and designers but also for someone who just wants a new website for his business. Try it now!', 'illdy' ),
+		'default'           => __( 'lldy is a great one-page theme, perfect for developers and designers but also for someone who just wants a new website for his business. Try it now!', 'book-me-memories' ),
 		'transport'         => 'postMessage',
 	) );
 	$wp_customize->add_control(  new Epsilon_Editor_Custom_Control(
         $wp_customize, $prefix . '_jumbotron_general_entry', array(
-		'label'       => __( 'Entry', 'illdy' ),
-		'description' => __( 'The content added in this field will show below the title.', 'illdy' ),
+		'label'       => __( 'Entry', 'book-me-memories' ),
+		'description' => __( 'The content added in this field will show below the title.', 'book-me-memories' ),
 		'section'     => $prefix . '_jumbotron_general',
 	) ) );
 
@@ -84,11 +84,11 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_general_entr
 // First button text
 $wp_customize->add_setting( $prefix . '_jumbotron_general_first_button_title', array(
 	'sanitize_callback' => 'sanitize_text_field',
-	'default'           => __( 'Learn more', 'illdy' ),
+	'default'           => __( 'Learn more', 'book-me-memories' ),
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_jumbotron_general_first_button_title', array(
-	'label'    => __( 'First button title', 'illdy' ),
+	'label'    => __( 'First button title', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 ) );
 $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_general_first_button_title', array(
@@ -96,26 +96,26 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_general_firs
 ) );
 
 // First button URL
-$wp_customize->add_setting( 'illdy_jumbotron_general_first_button_url', array(
+$wp_customize->add_setting( 'book-me-memories_jumbotron_general_first_button_url', array(
 	'sanitize_callback' => 'esc_url_raw',
 	'default'           => esc_url( '#' ),
 	'transport'         => 'postMessage',
 ) );
-$wp_customize->add_control( 'illdy_jumbotron_general_first_button_url', array(
-	'label'    => __( 'First button URL', 'illdy' ),
+$wp_customize->add_control( 'book-me-memories_jumbotron_general_first_button_url', array(
+	'label'    => __( 'First button URL', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
-	'settings' => 'illdy_jumbotron_general_first_button_url',
+	'settings' => 'book-me-memories_jumbotron_general_first_button_url',
 ) );
 
 
 // Second button text
 $wp_customize->add_setting( $prefix . '_jumbotron_general_second_button_title', array(
 	'sanitize_callback' => 'sanitize_text_field',
-	'default'           => __( 'Download', 'illdy' ),
+	'default'           => __( 'Download', 'book-me-memories' ),
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_jumbotron_general_second_button_title', array(
-	'label'    => __( 'Second button title', 'illdy' ),
+	'label'    => __( 'Second button title', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 ) );
 $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_general_second_button_title', array(
@@ -123,15 +123,15 @@ $wp_customize->selective_refresh->add_partial( $prefix .'_jumbotron_general_seco
 ) );
 
 // Second button URL
-$wp_customize->add_setting( 'illdy_jumbotron_general_second_button_url', array(
+$wp_customize->add_setting( 'book-me-memories_jumbotron_general_second_button_url', array(
 	'sanitize_callback' => 'esc_url_raw',
 	'default'           => esc_url( '#' ),
 	'transport'         => 'postMessage',
 ) );
-$wp_customize->add_control( 'illdy_jumbotron_general_second_button_url', array(
-	'label'    => __( 'Second button URL', 'illdy' ),
+$wp_customize->add_control( 'book-me-memories_jumbotron_general_second_button_url', array(
+	'label'    => __( 'Second button URL', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
-	'settings' => 'illdy_jumbotron_general_second_button_url',
+	'settings' => 'book-me-memories_jumbotron_general_second_button_url',
 ) );
 
 // Colors & Backgrounds
@@ -147,7 +147,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
         'section'   => $prefix . '_jumbotron_general',
         'buttons'   => array(
             array(
-                'name' => __( 'Colors', 'illdy' ),
+                'name' => __( 'Colors', 'book-me-memories' ),
                 'fields'    => array(
                 	$prefix . '_jumbotron_title_color',
                     $prefix . '_jumbotron_points_color',
@@ -162,7 +162,7 @@ $wp_customize->add_control(  new Epsilon_Control_Tab( $wp_customize,
                 'active' => true
                 ),
             array(
-                'name' => __( 'Backgrounds', 'illdy' ),
+                'name' => __( 'Backgrounds', 'book-me-memories' ),
                 'fields'    => array(
                     $prefix . '_jumbotron_general_image',
                     $prefix . '_jumbotron_background_size',
@@ -182,7 +182,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_general_image', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $prefix . '_jumbotron_general_image', array(
-	'label'    => __( 'Background Image', 'illdy' ),
+	'label'    => __( 'Background Image', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_general_image',
 ) ) );
@@ -197,7 +197,7 @@ $wp_customize->add_setting( $prefix.'_jumbotron_background_position_y', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_customize, $prefix.'_jumbotron_background_position', array(
-	'label'    => __( 'Background Position', 'illdy' ),
+	'label'    => __( 'Background Position', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => array(
 		'x' => $prefix.'_jumbotron_background_position_x',
@@ -206,17 +206,17 @@ $wp_customize->add_control( new WP_Customize_Background_Position_Control( $wp_cu
 ) ) );
 $wp_customize->add_setting( $prefix . '_jumbotron_background_size', array(
 	'default' => 'cover',
-	'sanitize_callback' => 'illdy_sanitize_background_size',
+	'sanitize_callback' => 'book-me-memories_sanitize_background_size',
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( $prefix . '_jumbotron_background_size', array(
-	'label'      => __( 'Image Size', 'illdy' ),
+	'label'      => __( 'Image Size', 'book-me-memories' ),
 	'section'    => $prefix . '_jumbotron_general',
 	'type'       => 'select',
 	'choices'    => array(
-		'auto'    => __( 'Original', 'illdy' ),
-		'contain' => __( 'Fit to Screen', 'illdy' ),
-		'cover'   => __( 'Fill Screen', 'illdy' ),
+		'auto'    => __( 'Original', 'book-me-memories' ),
+		'contain' => __( 'Fit to Screen', 'book-me-memories' ),
+		'cover'   => __( 'Fill Screen', 'book-me-memories' ),
 	),
 ) );
 
@@ -228,7 +228,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_background_repeat', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_jumbotron_background_repeat', array(
 	'type'        => 'mte-toggle',
-	'label'       => __( 'Repeat Background Image', 'illdy' ),
+	'label'       => __( 'Repeat Background Image', 'book-me-memories' ),
 	'section'     => $prefix . '_jumbotron_general',
 ) ) );
 
@@ -240,7 +240,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_background_attachment', array(
 
 $wp_customize->add_control(  new Epsilon_Control_Toggle( $wp_customize, $prefix . '_jumbotron_background_attachment', array(
 	'type'        => 'mte-toggle',
-	'label'       => __( 'Scroll with Page', 'illdy' ),
+	'label'       => __( 'Scroll with Page', 'book-me-memories' ),
 	'section'     => $prefix . '_jumbotron_general',
 ) ) );
 
@@ -253,7 +253,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_general_color', array(
 
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_general_color', array(
-	'label'    => __( 'Background Color', 'illdy' ),
+	'label'    => __( 'Background Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_general_color',
 ) ) );
@@ -265,7 +265,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_first_button_background', arra
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_first_button_background', array(
-	'label'    => __( 'First Button Background Color', 'illdy' ),
+	'label'    => __( 'First Button Background Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_first_button_background',
 ) ) );
@@ -277,7 +277,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_second_button_background', arr
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_second_button_background', array(
-	'label'    => __( 'Second Button Background Color', 'illdy' ),
+	'label'    => __( 'Second Button Background Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_second_button_background',
 ) ) );
@@ -289,7 +289,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_second_button_background_hover
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_second_button_background_hover', array(
-	'label'    => __( 'Second Button Hover Background Color', 'illdy' ),
+	'label'    => __( 'Second Button Hover Background Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_second_button_background_hover',
 ) ) );
@@ -301,7 +301,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_title_color', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_title_color', array(
-	'label'    => __( 'Title Color', 'illdy' ),
+	'label'    => __( 'Title Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_title_color',
 ) ) );
@@ -312,7 +312,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_points_color', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_points_color', array(
-	'label'    => __( 'Title Points Color', 'illdy' ),
+	'label'    => __( 'Title Points Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_points_color',
 ) ) );
@@ -323,7 +323,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_descriptions_color', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_descriptions_color', array(
-	'label'    => __( 'Description Color', 'illdy' ),
+	'label'    => __( 'Description Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_descriptions_color',
 ) ) );
@@ -334,7 +334,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_first_button_color', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_first_button_color', array(
-	'label'    => __( 'Left Button Text Color', 'illdy' ),
+	'label'    => __( 'Left Button Text Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_first_button_color',
 ) ) );
@@ -345,7 +345,7 @@ $wp_customize->add_setting( $prefix . '_jumbotron_right_button_color', array(
 	'transport'         => 'postMessage',
 ) );
 $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $prefix . '_jumbotron_right_button_color', array(
-	'label'    => __( 'Right Button Text Color', 'illdy' ),
+	'label'    => __( 'Right Button Text Color', 'book-me-memories' ),
 	'section'  => $prefix . '_jumbotron_general',
 	'settings' => $prefix . '_jumbotron_right_button_color',
 ) ) );

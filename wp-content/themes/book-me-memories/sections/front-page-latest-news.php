@@ -3,7 +3,7 @@
  *    The template for displaying the latest news section in front page.
  *
  * @package    WordPress
- * @subpackage illdy
+ * @subpackage book-me-memories
  */
 ?>
 <?php
@@ -14,18 +14,18 @@ if ( $blog_page_id ) {
 	$button_url = get_permalink( $blog_page_id );
 }
 if ( current_user_can( 'edit_theme_options' ) ) {
-	$general_title   = get_theme_mod( 'illdy_latest_news_general_title', __( 'Latest News', 'illdy' ) );
-	$general_entry   = get_theme_mod( 'illdy_latest_news_general_entry', __( 'If you are interested in the latest articles in the industry, take a sneak peek at our blog. You have got nothing to loose!', 'illdy' ) );
-	$button_text     = get_theme_mod( 'illdy_latest_news_button_text', __( 'See blog', 'illdy' ) );
-	$number_of_posts = get_theme_mod( 'illdy_latest_news_number_of_posts', absint( 3 ) );
+	$general_title   = get_theme_mod( 'book-me-memories_latest_news_general_title', __( 'Latest News', 'book-me-memories' ) );
+	$general_entry   = get_theme_mod( 'book-me-memories_latest_news_general_entry', __( 'If you are interested in the latest articles in the industry, take a sneak peek at our blog. You have got nothing to loose!', 'book-me-memories' ) );
+	$button_text     = get_theme_mod( 'book-me-memories_latest_news_button_text', __( 'See blog', 'book-me-memories' ) );
+	$number_of_posts = get_theme_mod( 'book-me-memories_latest_news_number_of_posts', absint( 3 ) );
 } else {
-	$general_title   = get_theme_mod( 'illdy_latest_news_general_title' );
-	$general_entry   = get_theme_mod( 'illdy_latest_news_general_entry' );
-	$button_text     = get_theme_mod( 'illdy_latest_news_button_text' );
-	$number_of_posts = get_theme_mod( 'illdy_latest_news_number_of_posts', absint( 3 ) );
+	$general_title   = get_theme_mod( 'book-me-memories_latest_news_general_title' );
+	$general_entry   = get_theme_mod( 'book-me-memories_latest_news_general_entry' );
+	$button_text     = get_theme_mod( 'book-me-memories_latest_news_button_text' );
+	$number_of_posts = get_theme_mod( 'book-me-memories_latest_news_number_of_posts', absint( 3 ) );
 }
 
-$number_of_words = get_theme_mod( 'illdy_latest_news_words_number', absint( 20 ));
+$number_of_words = get_theme_mod( 'book-me-memories_latest_news_words_number', absint( 20 ));
 
 $post_query_args = array(
 	'post_type'              => array( 'post' ),
@@ -72,20 +72,20 @@ if ( $post_query->have_posts() || $general_title != '' || $general_entry != '' |
 						<?php $counter = 0; ?>
 						<?php while ( $post_query->have_posts() ): ?>
 							<?php $post_query->the_post(); ?>
-							<?php $post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'illdy-front-page-latest-news' ); ?>
+							<?php $post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'book-me-memories-front-page-latest-news' ); ?>
 
-							<div class="illdy-blog-post col-md-4 col-sm-6 col-xs-12">
-								<div class="post" style="<?php if ( ! $post_thumbnail && !get_theme_mod( 'illdy_disable_random_featured_image' ) ): echo 'padding-top: 40px;'; endif; ?>">
+							<div class="book-me-memories-blog-post col-md-4 col-sm-6 col-xs-12">
+								<div class="post" style="<?php if ( ! $post_thumbnail && !get_theme_mod( 'book-me-memories_disable_random_featured_image' ) ): echo 'padding-top: 40px;'; endif; ?>">
 									<?php if ( has_post_thumbnail() ){ ?>
 										<div class="post-image" style="background-image: url('<?php echo esc_url( $post_thumbnail[0] ); ?>');"></div>
-									<?php }elseif ( get_theme_mod( 'illdy_disable_random_featured_image' ) ) { ?>
-										<div class="post-image"  style="background-image: url('<?php echo illdy_get_random_featured_image(); ?>');"></div><!--/.blog-post-image-->
+									<?php }elseif ( get_theme_mod( 'book-me-memories_disable_random_featured_image' ) ) { ?>
+										<div class="post-image"  style="background-image: url('<?php echo book-me-memories_get_random_featured_image(); ?>');"></div><!--/.blog-post-image-->
 									<?php } ?>
 									<h5><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="post-title"><?php the_title(); ?></a></h5>
 									<div class="post-entry">
 										<?php echo wp_trim_words( get_the_content(), $number_of_words ); ?>
 									</div><!--/.post-entry-->
-									<a href="<?php the_permalink(); ?>" title="<?php _e( 'Read more', 'illdy' ); ?>" class="post-button"><i class="fa fa-chevron-circle-right"></i><?php _e( 'Read more', 'illdy' ); ?>
+									<a href="<?php the_permalink(); ?>" title="<?php _e( 'Read more', 'book-me-memories' ); ?>" class="post-button"><i class="fa fa-chevron-circle-right"></i><?php _e( 'Read more', 'book-me-memories' ); ?>
 									</a>
 								</div><!--/.post-->
 							</div><!--/.col-sm-4-->

@@ -1,28 +1,34 @@
 <?php
 /**
- * Book Me Memories Theme (based on Illdy)
- * Extended with auto-page setup, menus, and footer info
+ *    Sets up theme defaults and registers support for various WordPress features.
+ *
+ *    Note that this function is hooked into the after_setup_theme hook, which
+ *    runs before the init hook. The init hook is too late for some features, such
+ *    as indicating support for post thumbnails.
  */
+if ( ! function_exists( 'book-me-memories_setup' ) ) {
+	add_action( 'after_setup_theme', 'book-me-memories_setup' );
+	function book-me-memories_setup() {
 
-// -------------------
-// THEME SETUP
-// -------------------
-if ( ! function_exists( 'illdy_setup' ) ) {
-	add_action( 'after_setup_theme', 'illdy_setup' );
-	function illdy_setup() {
-
-		// Core includes
+		// Extras
 		require_once trailingslashit( get_template_directory() ) . 'inc/extras.php';
+
+		// Customizer
 		require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer.php';
+
+		// JetPack
 		require_once trailingslashit( get_template_directory() ) . 'inc/jetpack.php';
+
+		// Components
 		require_once trailingslashit( get_template_directory() ) . 'inc/components/entry-meta/class.mt-entry-meta.php';
 		require_once trailingslashit( get_template_directory() ) . 'inc/components/author-box/class.mt-author-box.php';
 		require_once trailingslashit( get_template_directory() ) . 'inc/components/related-posts/class.mt-related-posts.php';
 
-		// Theme textdomain
-		load_theme_textdomain( 'illdy', get_template_directory() . '/languages' );
 
-		// Theme support
+		// Load Theme Textdomain
+		load_theme_textdomain( 'book-me-memories', get_template_directory() . '/languages' );
+
+		// Add Theme Support
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'title-tag' );
@@ -31,162 +37,414 @@ if ( ! function_exists( 'illdy_setup' ) ) {
 			'height'      => 75,
    			'flex-height' => false,
 			'flex-width'  => true,
-		));
+		) );
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 		add_theme_support( 'custom-header', array(
 			'default-image'  => esc_url( get_template_directory_uri() . '/layout/images/blog/blog-header.png' ),
 			'width'          => 1920,
 			'height'         => 532,
 			'flex-height'    => true,
-			'flex-width'     => true,
+			'flex-width'    => true,
 			'random-default' => true,
 			'header-text'    => false,
-		));
+		) );
 		add_theme_support( 'customize-selective-refresh-widgets' );
-
-		// Nav menus
-		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', 'book-me-memories' ),
-			'footer'  => __( 'Footer Menu', 'book-me-memories' ),
-		));
-
-		// Default headers
 		register_default_headers( array(
 			'default' => array(
 				'url'           => '%s/layout/images/blog/blog-header.png',
 				'thumbnail_url' => '%s/layout/images/blog/blog-header.png',
-				'description'   => __( 'Default', 'illdy' )
+				'description'   => __( 'Coffe', 'book-me-memories' )
 			),
-		));
+		) );
 
-		// Back compatible
+
+		// Add Image Size
+		add_image_size( 'book-me-memories-blog-list', 750, 500, true );
+		add_image_size( 'book-me-memories-widget-recent-posts', 70, 70, true );
+		add_image_size( 'book-me-memories-blog-post-related-articles', 240, 206, true );
+		add_image_size( 'book-me-memories-front-page-latest-news', 250, 213, true );
+		add_image_size( 'book-me-memories-front-page-testimonials', 127, 127, true );
+		add_image_size( 'book-me-memories-front-page-projects', 476, 476, true );
+		add_image_size( 'book-me-memories-front-page-person', 125, 125, true );
+
+		// Register Nav Menus
+		register_nav_menus( array(
+			'primary-menu' => __( 'Primary Menu', 'book-me-memories' ),
+		) );
+
+		/**
+		 *  Back compatible
+		 */
 		require get_template_directory() . '/inc/back-compatible.php';
+
+		/*******************************************/
+		/*************  Welcome screen *************/
+		/*******************************************/
+
+		// Welcome screen
+		if ( is_admin() ) {
+			require get_template_directory() . '/inc/notify-system-checks.php';
+			global $book-me-memories_required_actions, $book-me-memories_recommended_plugins;
+			$book-me-memories_recommended_plugins = array(
+				'kiwi-social-share'			=> array( 'recommended' => true ),
+				'contact-form-7'  			=> array( 'recommended' => false ),
+				'simple-custom-post-order' 	=> array( 'recommended' => false ),
+				'fancybox-for-wordpress' 	=> array( 'recommended' => false ),
+			);
+			/*
+			 * id - unique id; required
+			 * title
+			 * description
+			 * check - check for plugins (if installed)
+			 * plugin_slug - the plugin's slug (used for installing the plugin)
+			 *
+			 */
+
+			$book-me-memories_required_actions = array(
+				array(
+					"id"          => 'book-me-memories-req-ac-install-book-me-memories-companion',
+					"title"       => MT_Notify_System::create_plugin_title( __( 'Book Me Memories Companion', 'book-me-memories' ), 'book-me-memories-companion' ),
+					"description" => __( 'It is highly recommended that you install the "Book Me Memories" Companion.', 'book-me-memories' ),
+					"check"       => MT_Notify_System::check_plugin_update( 'book-me-memories-companion' ),
+					"type"		  => 'plugin',
+					"plugin_slug" => 'book-me-memories-companion'
+				),
+				array(
+					"id"          => 'book-me-memories-req-ac-install-contact-form-7',
+					"title"       => MT_Notify_System::create_plugin_requirement_title( __( 'Install: Contact Form 7', 'book-me-memories' ), __( 'Activate: Contact Form 7', 'book-me-memories' ), 'contact-form-7' ),
+					"description" => __( 'It is highly recommended that you install the Contact Form 7.', 'book-me-memories' ),
+					"check"       => MT_Notify_System::has_import_plugin( 'contact-form-7' ),
+					"type"		  => 'plugin',
+					"plugin_slug" => 'contact-form-7'
+				)
+			);
+
+			$book-me-memories_required_actions = apply_filters( 'book-me-memories_required_actions', $book-me-memories_required_actions );
+
+			require get_template_directory() . '/inc/admin/welcome-screen/welcome-screen.php';
+		}
+
+	}
+
+	// Add Editor Style
+	add_editor_style( 'book-me-memories-google-fonts' );
+
+}
+
+if ( ! function_exists( 'book-me-memories_is_not_latest_posts' ) ) {
+	function book-me-memories_is_not_latest_posts() {
+		return ( 'page' == get_option( 'show_on_front' ) ? true : false );
 	}
 }
 
-// -------------------
-// STYLES & SCRIPTS
-// -------------------
-add_action( 'wp_enqueue_scripts', 'illdy_enqueue_stylesheets' );
-function illdy_enqueue_stylesheets() {
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/layout/css/bootstrap.min.css' );
-	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/layout/css/font-awesome.min.css' );
-	wp_enqueue_style( 'illdy-style', get_stylesheet_uri(), array(), '1.0.16', 'all' );
-}
+if ( ! function_exists( 'book-me-memories_is_not_imported' ) ) {
+	function book-me-memories_is_not_imported() {
 
-add_action( 'wp_enqueue_scripts', 'illdy_enqueue_javascripts' );
-function illdy_enqueue_javascripts() {
-	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/layout/js/bootstrap/bootstrap.min.js', array('jquery'), '3.3.6', true );
-	wp_enqueue_script( 'illdy-scripts', get_template_directory_uri() . '/layout/js/scripts.min.js', array('jquery'), '1.0.16', true );
+		if ( defined( "ILLDY_COMPANION" ) ) {
+			$book-me-memories_show_required_actions = get_option( 'book-me-memories_show_required_actions' );
+			if ( isset( $book-me-memories_show_required_actions['book-me-memories-req-import-content'] ) ) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return true;
+		}
 
-	// ✅ fixed: removed stray backslash
-	if ( is_front_page() ) {
-		wp_add_inline_script( 'illdy-scripts', "console.log('Front page loaded');" );
 	}
 }
 
-// -------------------
-// FOOTER INFO
-// -------------------
-function bookmememories_footer_info() {
-    echo '<div class="footer-contact">';
-    echo '<p>📞 +91 9426224669 | ✉️ <a href="mailto:support@bookmememories.in">support@bookmememories.in</a></p>';
-    echo '<p>📍 A-105, Business Park, PDPU Rd, Raysan, Gujarat 382426</p>';
-    echo '<p>💬 <a href="https://wa.me/919408881889" target="_blank">Chat on WhatsApp</a></p>';
-    echo '<p>💳 Payment Partner: <img src="https://razorpay.com/favicon.png" alt="Razorpay" style="height:24px;"></p>';
-    echo '</div>';
+
+/**
+ *    Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ *    Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+if ( ! function_exists( 'book-me-memories_content_width' ) ) {
+	add_action( 'after_setup_theme', 'book-me-memories_content_width', 0 );
+	function book-me-memories_content_width() {
+		$GLOBALS['content_width'] = apply_filters( 'book-me-memories_content_width', 640 );
+	}
 }
-add_action( 'wp_footer', 'bookmememories_footer_info' );
 
-// -------------------
-// SECURITY HEADERS
-// -------------------
-function bookmememories_security_headers() {
-    header( 'X-Frame-Options: SAMEORIGIN' );
-    header( 'X-Content-Type-Options: nosniff' );
-    header( 'Referrer-Policy: no-referrer-when-downgrade' );
+/**
+ *    WP Enqueue Stylesheets
+ */
+if ( ! function_exists( 'book-me-memories_enqueue_stylesheets' ) ) {
+	add_action( 'wp_enqueue_scripts', 'book-me-memories_enqueue_stylesheets' );
+
+	function book-me-memories_enqueue_stylesheets() {
+
+		// Google Fonts
+		$google_fonts_args = array(
+			'family' => 'Source+Sans+Pro:400,900,700,300,300italic|Lato:300,400,700,900|Poppins:300,400,500,600,700',
+		);
+
+		// WP Register Style
+		wp_register_style( 'book-me-memories-google-fonts', add_query_arg( $google_fonts_args, 'https://fonts.googleapis.com/css' ), array(), null );
+
+		// WP Enqueue Style
+		if ( get_theme_mod( 'book-me-memories_preloader_enable', 1 ) == 1 ) {
+			wp_enqueue_style( 'book-me-memories-pace', get_template_directory_uri() . '/layout/css/pace.min.css', array(), '', 'all' );
+		}
+
+		wp_enqueue_style( 'book-me-memories-google-fonts' );
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/layout/css/bootstrap.min.css', array(), '3.3.6', 'all' );
+		wp_enqueue_style( 'bootstrap-theme', get_template_directory_uri() . '/layout/css/bootstrap-theme.min.css', array(), '3.3.6', 'all' );
+		wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/layout/css/font-awesome.min.css', array(), '4.5.0', 'all' );
+		wp_enqueue_style( 'owl-carousel', get_template_directory_uri() . '/layout/css/owl-carousel.min.css', array(), '2.0.0', 'all' );
+		if ( get_theme_mod( 'book-me-memories_projects_lightbox', 0 ) == 1 ) {
+			wp_enqueue_style( 'book-me-memories-fancybox', get_template_directory_uri() . '/layout/css/jquery.fancybox.css', array(), '', 'all' );
+		}
+		wp_enqueue_style( 'book-me-memories-main', get_template_directory_uri() . '/layout/css/main.css', array(), '', 'all' );
+		wp_enqueue_style( 'book-me-memories-custom', get_template_directory_uri() . '/layout/css/custom.min.css', array(), '', 'all' );
+		wp_enqueue_style( 'book-me-memories-style', get_stylesheet_uri(), array(), '1.0.16', 'all' );
+	}
 }
-add_action( 'send_headers', 'bookmememories_security_headers' );
 
-// -------------------
-// AUTO CREATE PAGES + MENUS
-// -------------------
-function bookmememories_create_pages_and_menus() {
-    $pages = array(
-        'Home' => 'Welcome to Book Me Memories – your AI-powered flight booking partner!',
-        'About Us' => 'We provide AI-powered flight search and booking.',
-        'Contact Us' => '📞 +91 9426224669<br>✉️ support@bookmememories.in<br>📍 A-105, Business Park, PDPU Rd, Raysan, Gujarat 382426<br>💬 <a href="https://wa.me/919408881889">Chat on WhatsApp</a>',
-        'Privacy Policy' => 'Our privacy policy ensures your data is safe with Book Me Memories.',
-        'Terms & Conditions' => 'These are the terms and conditions for using Book Me Memories services.',
-        'Refund & Cancellation' => 'Refund and cancellation policies for flight bookings.',
-        'FAQ' => 'Frequently Asked Questions about Book Me Memories.',
-        'Careers' => 'Join Book Me Memories and help revolutionize AI-powered travel booking.',
-        'Sitemap' => 'This is the sitemap of Book Me Memories website.',
-    );
 
-    $created_pages = array();
-    foreach ($pages as $title => $content) {
-        $page_check = get_page_by_title($title);
-        if (!isset($page_check->ID)) {
-            $page_id = wp_insert_post(array(
-                'post_title'   => $title,
-                'post_content' => $content,
-                'post_status'  => 'publish',
-                'post_type'    => 'page',
-            ));
-            $created_pages[$title] = $page_id;
-        } else {
-            $created_pages[$title] = $page_check->ID;
-        }
-    }
+/**
+ *    WP Enqueue JavaScripts
+ */
+if ( ! function_exists( 'book-me-memories_enqueue_javascripts' ) ) {
+	add_action( 'wp_enqueue_scripts', 'book-me-memories_enqueue_javascripts' );
 
-    // Set Home as static front page
-    if (isset($created_pages['Home'])) {
-        update_option('show_on_front', 'page');
-        update_option('page_on_front', $created_pages['Home']);
-    }
+	function book-me-memories_enqueue_javascripts() {
+		if ( get_theme_mod( 'book-me-memories_preloader_enable', 1 ) == 1 ) {
+			wp_enqueue_script( 'book-me-memories-pace', get_template_directory_uri() . '/layout/js/pace/pace.min.js', array( 'jquery' ), '', false );
+		}
+		wp_enqueue_script( 'jquery-ui-progressbar', '', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'book-me-memories-bootstrap', get_template_directory_uri() . '/layout/js/bootstrap/bootstrap.min.js', array( 'jquery' ), '3.3.6', true );
+		wp_enqueue_script( 'book-me-memories-owl-carousel', get_template_directory_uri() . '/layout/js/owl-carousel/owl-carousel.min.js', array( 'jquery' ), '2.0.0', true );
+		wp_enqueue_script( 'book-me-memories-count-to', get_template_directory_uri() . '/layout/js/count-to/count-to.min.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'book-me-memories-visible', get_template_directory_uri() . '/layout/js/visible/visible.min.js', array( 'jquery' ), '', true );
+		if ( get_theme_mod( 'book-me-memories_projects_lightbox', 0 ) == 1 ) {
+			wp_enqueue_script( 'book-me-memories-fancybox', get_template_directory_uri() . '/layout/js/jquery.fancybox.js', array( 'jquery' ), '', true );
+			wp_add_inline_script( 'book-me-memories-fancybox', 'jQuery(".fancybox").fancybox();' );
+		}
+		wp_enqueue_script( 'book-me-memories-parallax', get_template_directory_uri() . '/layout/js/parallax.min.js', array( 'jquery' ), '1.0.16', true );
+		wp_enqueue_script( 'book-me-memories-plugins', get_template_directory_uri() . '/layout/js/plugins.min.js', array( 'jquery' ), '1.0.16', true );
+		wp_enqueue_script( 'book-me-memories-scripts', get_template_directory_uri() . '/layout/js/scripts.min.js', array( 'jquery' ), '1.0.16', true );
+		if ( is_front_page() ) {
+			wp_add_inline_script( 'book-me-memories-scripts', 'if( jQuery(\'.blog-carousel > .book-me-memories-blog-post\').length > 3 ){jQuery(\'.blog-carousel\').owlCarousel({\'items\': 3,\'loop\': true,\'dots\': false,\'nav\' : true, \'navText\':[\'<i class="fa fa-angle-left" aria-hidden="true"></i>\',\'<i class="fa fa-angle-right" aria-hidden="true"></i>\'], responsive : { 0 : { items : 1 }, 480 : { items : 2 }, 900 : { items : 3 } }});}' );
+		}
 
-    // Primary Menu
-    $primary_menu = 'Primary Menu';
-    if (!wp_get_nav_menu_object($primary_menu)) {
-        $menu_id = wp_create_nav_menu($primary_menu);
-        $order = array('Home', 'About Us', 'Contact Us', 'FAQ', 'Careers', 'Sitemap', 'Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation');
-        foreach ($order as $title) {
-            if (isset($created_pages[$title])) {
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' => $title,
-                    'menu-item-object' => 'page',
-                    'menu-item-object-id' => $created_pages[$title],
-                    'menu-item-type' => 'post_type',
-                    'menu-item-status' => 'publish'
-                ));
-            }
-        }
-        $locations = get_theme_mod('nav_menu_locations');
-        $locations['primary'] = $menu_id;
-        set_theme_mod('nav_menu_locations', $locations);
-    }
-
-    // Footer Menu
-    $footer_menu = 'Footer Menu';
-    if (!wp_get_nav_menu_object($footer_menu)) {
-        $menu_id = wp_create_nav_menu($footer_menu);
-        $order = array('Privacy Policy', 'Terms & Conditions', 'Refund & Cancellation', 'Sitemap');
-        foreach ($order as $title) {
-            if (isset($created_pages[$title])) {
-                wp_update_nav_menu_item($menu_id, 0, array(
-                    'menu-item-title' => $title,
-                    'menu-item-object' => 'page',
-                    'menu-item-object-id' => $created_pages[$title],
-                    'menu-item-type' => 'post_type',
-                    'menu-item-status' => 'publish'
-                ));
-            }
-        }
-        $locations = get_theme_mod('nav_menu_locations');
-        $locations['footer'] = $menu_id;
-        set_theme_mod('nav_menu_locations', $locations);
-    }
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
+	}
 }
-add_action( 'after_switch_theme', 'bookmememories_create_pages_and_menus' );
+
+
+/**
+ *    Widgets
+ */
+if ( ! function_exists( 'book-me-memories_widgets' ) ) {
+	add_action( 'widgets_init', 'book-me-memories_widgets' );
+
+	function book-me-memories_widgets() {
+
+		// Blog Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Blog Sidebar', 'book-me-memories' ),
+			'id'            => 'blog-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in blog page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Page Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Page Sidebar', 'book-me-memories' ),
+			'id'            => 'page-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear on single pages.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Footer Sidebar 1
+		register_sidebar( array(
+			'name'          => __( 'Footer Sidebar 1', 'book-me-memories' ),
+			'id'            => 'footer-sidebar-1',
+			'description'   => __( 'The widgets added in this sidebar will appear in first block from footer.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Footer Sidebar 2
+		register_sidebar( array(
+			'name'          => __( 'Footer Sidebar 2', 'book-me-memories' ),
+			'id'            => 'footer-sidebar-2',
+			'description'   => __( 'The widgets added in this sidebar will appear in second block from footer.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Footer Sidebar 3
+		register_sidebar( array(
+			'name'          => __( 'Footer Sidebar 3', 'book-me-memories' ),
+			'id'            => 'footer-sidebar-3',
+			'description'   => __( 'The widgets added in this sidebar will appear in third block from footer.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Footer Sidebar 4
+		register_sidebar( array(
+			'name'          => __( 'Footer Sidebar 4', 'book-me-memories' ),
+			'id'            => 'footer-sidebar-4',
+			'description'   => __( 'The widgets added in this sidebar will appear in fourth block from footer.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// About Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - About Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-about-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in about section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-lg-4 col-lg-offset-0 %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// Projects Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - Projects Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-projects-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in projects section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="col-sm-3 col-xs-6 no-padding %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// Services Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - Services Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-services-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in services section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="col-sm-4 %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// Counter Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - Counter Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-counter-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in counter section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="col-sm-4 col-xs-12 %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// Team Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - Team Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-team-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in team section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// Full Width
+		register_sidebar( array(
+			'name'          => __( 'Front page - Full Width Section', 'book-me-memories' ),
+			'id'            => 'front-page-full-width-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in full width section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<div class="widget-title"><h5>',
+			'after_title'   => '</h5></div>',
+		) );
+
+		// Testimonial Sidebar
+		register_sidebar( array(
+			'name'          => __( 'Front page - Testimonials Sidebar', 'book-me-memories' ),
+			'id'            => 'front-page-testimonials-sidebar',
+			'description'   => __( 'The widgets added in this sidebar will appear in testimonials section from front page.', 'book-me-memories' ),
+			'before_widget' => '<div id="%1$s" class="%2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
+		// WooCommerce Sidebar
+		if ( class_exists( 'WooCommerce' ) ) {
+			register_sidebar( array(
+				'name'          => __( 'WooCommerce Sidebar', 'book-me-memories' ),
+				'id'            => 'woocommerce-sidebar',
+				'description'   => __( 'The widgets added in this sidebar will appear in WooCommerce pages.', 'book-me-memories' ),
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<div class="widget-title"><h5>',
+				'after_title'   => '</h5></div>',
+			) );
+		}
+	}
+}
+
+
+/**
+ *  Checkbox helper function
+ */
+if ( ! function_exists( 'book-me-memories_value_checkbox_helper' ) ) {
+	function book-me-memories_value_checkbox_helper( $value ) {
+		if ( $value == 1 ) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+}
+
+add_action( 'book-me-memories_after_content_above_footer', "book-me-memories_pagination", 1 );
+
+function book-me-memories_pagination() {
+	the_posts_pagination( array(
+		'prev_text'          => '<i class="fa fa-angle-left"></i>',
+		'next_text'          => '<i class="fa fa-angle-right"></i>',
+		'screen_reader_text' => '',
+	) );
+}
+
+
+if ( !function_exists( 'book-me-memories_get_random_featured_image' ) ) {
+	function book-me-memories_get_random_featured_image() {
+		$featured_image_list = array(
+			'random-blog-post-1.jpg',
+			'random-blog-post-2.jpg',
+			'random-blog-post-3.jpg',
+			'random-blog-post-4.jpg',
+			'random-blog-post-5.jpg',
+		);
+		$number = rand(0,4);
+		return get_template_directory_uri().'/layout/images/blog/'.$featured_image_list[$number];
+	}
+}
+
+if ( !function_exists( 'book-me-memories_get_recommended_actions_url' ) ) {
+	function book-me-memories_get_recommended_actions_url() {
+		return self_admin_url( 'themes.php?page=book-me-memories-welcome&tab=recommended_actions' );
+	}
+}

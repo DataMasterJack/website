@@ -8,32 +8,32 @@ $count = $this->count_actions();
 
 <div class="feature-section three-col">
 	<div class="col">
-		<h3><?php esc_html_e( 'Step 1 - Implement recommended actions', 'illdy' ); ?></h3>
-		<p><?php esc_html_e( 'We\'ve compiled a list of steps for you, to take make sure the experience you\'ll have using one of our products is very easy to follow.', 'illdy' ); ?></p>
+		<h3><?php esc_html_e( 'Step 1 - Implement recommended actions', 'book-me-memories' ); ?></h3>
+		<p><?php esc_html_e( 'We\'ve compiled a list of steps for you, to take make sure the experience you\'ll have using one of our products is very easy to follow.', 'book-me-memories' ); ?></p>
 		<?php if ( $count == 0 ) { ?>
 			<p><span class="dashicons dashicons-yes"></span>
-				<a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'illdy' ); ?></a>
+				<a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'No recommended actions left to perform', 'book-me-memories' ); ?></a>
 			</p>
 		<?php } else { ?>
-			<p><span class="dashicons dashicons-no-alt"></span> <a href="<?php echo admin_url( 'themes.php?page=illdy-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'Check recommended actions', 'illdy' ); ?></a>
+			<p><span class="dashicons dashicons-no-alt"></span> <a href="<?php echo admin_url( 'themes.php?page=book-me-memories-welcome&tab=recommended_actions' ); ?>"><?php esc_html_e( 'Check recommended actions', 'book-me-memories' ); ?></a>
 			</p> <?php
 		}; ?>
 	</div><!--/.col-->
 
 	<div class="col">
-		<h3><?php esc_html_e( 'Step 2 - Check our documentation', 'illdy' ); ?></h3>
-		<p><?php esc_html_e( 'Even if you\'re a long-time WordPress user, we still believe you should give our documentation a very quick Read.', 'illdy' ) ?></p>
+		<h3><?php esc_html_e( 'Step 2 - Check our documentation', 'book-me-memories' ); ?></h3>
+		<p><?php esc_html_e( 'Even if you\'re a long-time WordPress user, we still believe you should give our documentation a very quick Read.', 'book-me-memories' ) ?></p>
 		<p>
 			<a target="_blank"
-			   href="<?php echo esc_url( 'https://bookmememories.com/wp/support/illdy/' ); ?>"><?php esc_html_e( 'Full documentation', 'illdy' ); ?></a>
+			   href="<?php echo esc_url( 'https://bookmememories.com/wp/support/book-me-memories/' ); ?>"><?php esc_html_e( 'Full documentation', 'book-me-memories' ); ?></a>
 		</p>
 	</div><!--/.col-->
 
 	<div class="col">
-		<h3><?php esc_html_e( 'Step 3 - Customize everything', 'illdy' ); ?></h3>
-		<p><?php esc_html_e( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'illdy' ); ?></p>
+		<h3><?php esc_html_e( 'Step 3 - Customize everything', 'book-me-memories' ); ?></h3>
+		<p><?php esc_html_e( 'Using the WordPress Customizer you can easily customize every aspect of the theme.', 'book-me-memories' ); ?></p>
 		<p><a target="_blank" href="<?php echo esc_url( $customizer_url ); ?>"
-		      class="button button-primary"><?php esc_html_e( 'Go to Customizer', 'illdy' ); ?></a>
+		      class="button button-primary"><?php esc_html_e( 'Go to Customizer', 'book-me-memories' ); ?></a>
 		</p>
 	</div><!--/.col-->
 </div><!--/.feature-section-->

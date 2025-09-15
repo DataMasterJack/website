@@ -3,13 +3,13 @@
 $theme = wp_get_theme();
 if( version_compare( $theme->version, '1.0.17', '>' ) ) {
 
-	$current_logo = get_theme_mod( 'illdy_img_logo', '' );
+	$current_logo = get_theme_mod( 'book-me-memories_img_logo', '' );
 	$logo = get_custom_logo();
 	if ( $current_logo != '' && !$logo ) {
 		$logoID = attachment_url_to_postid($current_logo);
 		if ( $logoID ) {
 			set_theme_mod( 'custom_logo', $logoID );
-			remove_theme_mod( 'illdy_img_logo' );
+			remove_theme_mod( 'book-me-memories_img_logo' );
 		}
 	}
 
@@ -19,28 +19,28 @@ if( version_compare( $theme->version, '1.0.17', '>' ) ) {
 if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 
 	$defaults = array(
-				'illdy_panel_about',
-				'illdy_panel_projects',
-				'illdy_testimonials_general',
-				'illdy_panel_services',
-				'illdy_latest_news_general',
-				'illdy_counter_general',
-				'illdy_panel_team',
-				'illdy_contact_us',
-				'illdy_full_width'
+				'book-me-memories_panel_about',
+				'book-me-memories_panel_projects',
+				'book-me-memories_testimonials_general',
+				'book-me-memories_panel_services',
+				'book-me-memories_latest_news_general',
+				'book-me-memories_counter_general',
+				'book-me-memories_panel_team',
+				'book-me-memories_contact_us',
+				'book-me-memories_full_width'
 			);
 
 	$old_order = array();
 	$new_order = array();
 
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_first_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_second_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_third_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_fourth_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_fifth_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_sixth_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_seventh_section');
-	$old_order[] = get_theme_mod( 'illdy_general_sections_order_eighth_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_first_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_second_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_third_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_fourth_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_fifth_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_sixth_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_seventh_section');
+	$old_order[] = get_theme_mod( 'book-me-memories_general_sections_order_eighth_section');
 
 	foreach ($old_order as $key) {
 		if ( $key ) {
@@ -52,22 +52,22 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 
 	if ( !empty($new_order) ) {
 		$new_order = array_merge( $new_order, $defaults );
-		set_theme_mod( 'illdy_frontpage_sections', $new_order );
+		set_theme_mod( 'book-me-memories_frontpage_sections', $new_order );
 
-		remove_theme_mod( 'illdy_general_sections_order_first_section');
-		remove_theme_mod( 'illdy_general_sections_order_second_section');
-		remove_theme_mod( 'illdy_general_sections_order_third_section');
-		remove_theme_mod( 'illdy_general_sections_order_fourth_section');
-		remove_theme_mod( 'illdy_general_sections_order_fifth_section');
-		remove_theme_mod( 'illdy_general_sections_order_sixth_section');
-		remove_theme_mod( 'illdy_general_sections_order_seventh_section');
-		remove_theme_mod( 'illdy_general_sections_order_eighth_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_first_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_second_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_third_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_fourth_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_fifth_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_sixth_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_seventh_section');
+		remove_theme_mod( 'book-me-memories_general_sections_order_eighth_section');
 
 	}
 
 	// Backward compatibility for testimonials section
-	$illdy_testimonials_update = get_theme_mod( 'illdy_testimonials_update');
-	if ( class_exists('Book Me Memories_Widget_Testimonial') && ! $illdy_testimonials_update ) {
+	$book-me-memories_testimonials_update = get_theme_mod( 'book-me-memories_testimonials_update');
+	if ( class_exists('Book Me Memories_Widget_Testimonial') && ! $book-me-memories_testimonials_update ) {
 
 		$jetpack_testimonial_query_args = array (
 			'post_type'			=> array( 'jetpack-testimonial' ),
@@ -79,7 +79,7 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 
 		if ( $jetpack_testimonial_query->have_posts() ) {
 			$sidebars_widgets = get_option( 'sidebars_widgets' );
-			$widgets = get_option( 'widget_illdy_testimonial' );
+			$widgets = get_option( 'widget_book-me-memories_testimonial' );
 
 			if ( !empty($widgets) ) {
 				$aux_widgets = $widgets;
@@ -98,7 +98,7 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 
 			foreach ($jetpack_testimonial_query->posts as $index => $post) {
 				
-				$url = get_the_post_thumbnail_url( $post->ID, 'illdy-front-page-testimonials' );
+				$url = get_the_post_thumbnail_url( $post->ID, 'book-me-memories-front-page-testimonials' );
 				$name = $post->post_title;
 				$testimonial = $post->post_content;
 				$widgets[$key] = array(
@@ -106,14 +106,14 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 						'image'  => $url,
 						'testimonial' => $testimonial
 					);
-				array_push( $sidebars_widgets['front-page-testimonials-sidebar'], 'illdy_testimonial-'.$key );
+				array_push( $sidebars_widgets['front-page-testimonials-sidebar'], 'book-me-memories_testimonial-'.$key );
 
 				$key = $key+1;
 			}
 
-			update_option( 'widget_illdy_testimonial', $widgets );
+			update_option( 'widget_book-me-memories_testimonial', $widgets );
 			update_option( 'sidebars_widgets', $sidebars_widgets );
-			set_theme_mod( 'illdy_testimonials_update', true );
+			set_theme_mod( 'book-me-memories_testimonials_update', true );
 			
 		}
 
@@ -121,9 +121,9 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 
 
 	// Jumbotron Title
-	$first_word = get_theme_mod( 'illdy_jumbotron_general_first_row_from_title' );
-	$second_word = get_theme_mod( 'illdy_jumbotron_general_second_row_from_title' );
-	$third_word = get_theme_mod( 'illdy_jumbotron_general_third_row_from_title' );
+	$first_word = get_theme_mod( 'book-me-memories_jumbotron_general_first_row_from_title' );
+	$second_word = get_theme_mod( 'book-me-memories_jumbotron_general_second_row_from_title' );
+	$third_word = get_theme_mod( 'book-me-memories_jumbotron_general_third_row_from_title' );
 
 	if ( $first_word || $second_word || $third_word ) {
 		
@@ -145,32 +145,32 @@ if( version_compare( $theme->version, '1.0.36', '>=' ) ) {
 		}
 
 
-		set_theme_mod( 'illdy_jumbotron_title', $title );
-		remove_theme_mod( 'illdy_jumbotron_general_first_row_from_title');
-		remove_theme_mod( 'illdy_jumbotron_general_second_row_from_title');
-		remove_theme_mod( 'illdy_jumbotron_general_third_row_from_title');
+		set_theme_mod( 'book-me-memories_jumbotron_title', $title );
+		remove_theme_mod( 'book-me-memories_jumbotron_general_first_row_from_title');
+		remove_theme_mod( 'book-me-memories_jumbotron_general_second_row_from_title');
+		remove_theme_mod( 'book-me-memories_jumbotron_general_third_row_from_title');
 
 	}
 
 	// Contact US Title
-	$contacus_title = get_theme_mod( 'illdy_contact_us_title' );
+	$contacus_title = get_theme_mod( 'book-me-memories_contact_us_title' );
 	if ( $contacus_title ) {
-		set_theme_mod( 'illdy_contact_us_general_title', $contacus_title );
-		remove_theme_mod( 'illdy_contact_us_title');
+		set_theme_mod( 'book-me-memories_contact_us_general_title', $contacus_title );
+		remove_theme_mod( 'book-me-memories_contact_us_title');
 	}
 
 	//Adress Title
-	$address_title = get_theme_mod( 'illdy_contact_us_address_title' );
+	$address_title = get_theme_mod( 'book-me-memories_contact_us_address_title' );
 	if ( $address_title ) {
-		set_theme_mod( 'illdy_contact_us_general_address_title', $address_title );
-		remove_theme_mod( 'illdy_contact_us_address_title');
+		set_theme_mod( 'book-me-memories_contact_us_general_address_title', $address_title );
+		remove_theme_mod( 'book-me-memories_contact_us_address_title');
 	}
 
 	//Support Title
-	$support_title = get_theme_mod( 'illdy_contact_us_customer_support_title' );
+	$support_title = get_theme_mod( 'book-me-memories_contact_us_customer_support_title' );
 	if ( $support_title ) {
-		set_theme_mod( 'illdy_contact_us_general_customer_support_title', $support_title );
-		remove_theme_mod( 'illdy_contact_us_customer_support_title');
+		set_theme_mod( 'book-me-memories_contact_us_general_customer_support_title', $support_title );
+		remove_theme_mod( 'book-me-memories_contact_us_customer_support_title');
 	}
 
 }
